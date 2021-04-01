@@ -96,10 +96,11 @@ void PhysicsObjSelector::objectEfficiency() {
   vector<string> jetLabels {
     "nRawJets",
     "tight JetId",
-    "jet_pt > 25 & eta < 2.5"
+    "jet_pt > 25 & eta < 2.5",
     "puId cut",
     "lepton cleaning",
-    "is bTagged"
+    "is bTagged",
+    "subjet cleaning"
   };
   AnaUtil::showEfficiency("jetCutFlow", jetLabels, "Jet Selection", "Jets");  
 
@@ -131,7 +132,7 @@ void PhysicsObjSelector::bookHistograms() {
 
   new TH1D("muCutFlow", "Muon CutFlow", 5, -0.5, 4.5);
   new TH1D("eleCutFlow", "Electron CutFlow", 5, -0.5, 4.5);
-  new TH1D("jetCutFlow", "Jet CutFlow", 4, -0.5, 3.5);
+  new TH1D("jetCutFlow", "Jet CutFlow", 7, -0.5, 6.5);
   new TH1D("tauCutFlow", "Tau CutFlow", 3, -0.5, 2.5);
   new TH1D("fatJetCutFlow", "FatJet CutFlow", 7, -0.5, 6.5);
 }
@@ -140,7 +141,7 @@ void PhysicsObjSelector::bookHistograms() {
 void PhysicsObjSelector::clear() {
   eventList_.clear();
   metList_.clear();
-
+  
   preSelMuList_.clear();
   fakeableMuList_.clear();
   tightMuList_.clear();
@@ -153,6 +154,7 @@ void PhysicsObjSelector::clear() {
   leptonCleanJetList_.clear();
   looseBJetList_.clear();
   bJetList_.clear();
+  sJetCleanJetList_.clear();
 
   tauList_.clear();
   leptonCleanTauList_.clear();
@@ -300,8 +302,8 @@ bool PhysicsObjSelector::findLHEPartInfo() {
 void PhysicsObjSelector::findObjects() {
   muonSelector();  
   electronSelector();
-  jetSelector();
   fatJetSelector();
+  jetSelector();
   subJetSelector();
   metSelector();
   tauSelector();
@@ -414,7 +416,7 @@ void PhysicsObjSelector::electronSelector() {
 
 // Jet selection
 void PhysicsObjSelector::jetSelector() {
-  if (!(searchedMu_ && searchedEle_)) std::cout<<">>>Muon and Electron are not selected yet!!!\n";
+  if (!(searchedMu_ && searchedEle_ && searchedFatJet_)) std::cout<<">>>Muon and Electron and FatJets are not selected yet!!!\n";
   histf()->cd();
   histf()->cd("ObjectSelection");
   for (size_t i = 0; i < (*nJet->Get()); ++i){
@@ -454,6 +456,21 @@ void PhysicsObjSelector::jetSelector() {
       bJetList_.push_back(jet); 
       AnaUtil::fillHist1D ("jetCutFlow", 5, 1.0);
     }
+  
+    //applying subjet cleaning 
+    TLorentzVector jetp4 = AnaUtil::getP4(jet);
+       if (cleanFatJetList_.size() == 1) {
+	 if (jetp4.DeltaR(AnaUtil::getP4(cleanFatJetList_[0])) > 0.8) {
+	   sJetCleanJetList_.push_back(jet);
+	   AnaUtil::fillHist1D ("jetCutFlow", 6, 1.0);
+	 }
+      }
+      else if (cleanFatJetList_.size() >= 2) {
+	if (jetp4.DeltaR(AnaUtil::getP4(cleanFatJetList_[0])) > 0.8 && jetp4.DeltaR(AnaUtil::getP4(cleanFatJetList_[1])) > 0.8) {
+	  sJetCleanJetList_.push_back(jet);
+	  AnaUtil::fillHist1D ("jetCutFlow", 6, 1.0);
+	}
+      }
   }
   searchedJet_ = true;
 }
@@ -465,8 +482,8 @@ void PhysicsObjSelector::metSelector() {
   histf()->cd("ObjectSelection");
 
   vhtm::MET met;
-  met.pt    = *Met_nomPt->Get();
-  met.phi   = *Met_nomPhi->Get();
+  met.pt    = *Met_pt->Get();
+  met.phi   = *Met_phi->Get();
   met.signf = *Met_significance->Get();
   met.sumEt = *Met_sumEt->Get();
 
@@ -488,7 +505,7 @@ void PhysicsObjSelector::tauSelector() {
     if (std::fabs(Tau_dz->At(it)) > 0.2) continue;
     if (!Tau_idDecayModeNewDMs->At(it)) continue;
     if (!(Tau_decayMode->At(it) == 0 || Tau_decayMode->At(it) == 1 || Tau_decayMode->At(it) == 2 || Tau_decayMode->At(it) == 10 || Tau_decayMode->At(it) == 11)) continue;
-    if (!(Tau_idDeepTau2017v2VSjet->At(it) >> 4 & 0x1 && Tau_idDeepTau2017v2VSe->At(it) >> 0 & 0x1 && Tau_idDeepTau2017v2VSmu->At(it) >> 0 & 0x1)) continue;
+    if (!(Tau_idDeepTau2017v2p1VSjet->At(it) >> 4 & 0x1 && Tau_idDeepTau2017v2p1VSe->At(it) >> 0 & 0x1 && Tau_idDeepTau2017v2p1VSmu->At(it) >> 0 & 0x1)) continue;
 
     AnaUtil::fillHist1D ("tauCutFlow", 1, 1.0);
     
@@ -599,6 +616,13 @@ void PhysicsObjSelector::subJetSelector() {
 }
 
 bool PhysicsObjSelector::jetLeptonCleaning(const vhtm::Jet& jet) const {
+  TLorentzVector jp4(AnaUtil::getP4(jet));
+  for (const auto& mu: tightMuList_)  if (jp4.DeltaR(AnaUtil::getP4(mu)) <= 0.4) return false;
+  for (const auto& el: tightEleList_) if (jp4.DeltaR(AnaUtil::getP4(el)) <= 0.4) return false;
+  return true;
+}
+/*
+bool PhysicsObjSelector::jetLeptonCleaning(const vhtm::Jet& jet) const {
   bool isMuon {false};
   bool isElectron {false};
   TLorentzVector jp4(AnaUtil::getP4(jet));
@@ -687,6 +711,34 @@ bool PhysicsObjSelector::thisElectronIsMuon(const vhtm::Electron& ele, bool VsLo
       }
       if (isMuon) return true;
     }
+  }
+  return false;
+}
+*/
+// fat-jet lepton cleaning
+bool PhysicsObjSelector::fatJetLeptonCleaning(const vhtm::FatJet& jet) const {
+  TLorentzVector jp4(AnaUtil::getP4(jet));
+  for (const auto& mu: tightMuList_)  if (jp4.DeltaR(AnaUtil::getP4(mu)) <= 0.8) return false;
+  for (const auto& el: tightEleList_) if (jp4.DeltaR(AnaUtil::getP4(el)) <= 0.8) return false;
+
+  return true;
+}
+
+bool PhysicsObjSelector::tauLeptonCleaning(const vhtm::Tau& tau) const {
+  TLorentzVector tp4(AnaUtil::getP4(tau));
+  for (const auto& mu: tightMuList_)  if (tp4.DeltaR(AnaUtil::getP4(mu)) <= 0.3) return false;
+  for (const auto& el: tightEleList_) if (tp4.DeltaR(AnaUtil::getP4(el)) <= 0.3) return false;
+
+  return true;
+}
+
+bool PhysicsObjSelector::thisElectronIsMuon(const vhtm::Electron& ele, bool VsLooseMuons,  bool VsTightMuons) const {
+  TLorentzVector elep4(AnaUtil::getP4(ele));
+  if (VsLooseMuons) {
+    for (const auto& mu: preSelMuList_) if (elep4.DeltaR(AnaUtil::getP4(mu)) <= 0.3) return true;
+  }
+  else if (VsTightMuons) {
+    for (const auto& mu: tightMuList_)  if (elep4.DeltaR(AnaUtil::getP4(mu)) <= 0.3) return true;
   }
   return false;
 }

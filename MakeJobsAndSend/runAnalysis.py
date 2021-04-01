@@ -216,7 +216,7 @@ def main():
                 st = os.stat(shkey)
                 os.chmod(shkey, st.st_mode | stat.S_IEXEC)
                 process = Popen(condorJobCommandList, stdout=PIPE, stderr=PIPE)
-
+                process.communicate()
     # data samples
     logging.info('Start making job cards for data ===>')
     for key, val in dataSamplesDict.items():

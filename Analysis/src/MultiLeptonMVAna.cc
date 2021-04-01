@@ -134,10 +134,12 @@ void MultiLeptonMVAna::bookHistograms()
   histf()->cd();
   histf()->cd("Analysis");
 
-  new TH1D("nJets", "", 10, -0.5, 9.5);
-  new TH1D("nbJets", "", 10, -0.5, 9.5);
-  new TH1D("nFatJets", "", 10, -0.5, 9.5);
-  new TH1D("nFatbJets", "", 10, -0.5, 9.5);
+  new TH1D("nj_ak8clean", "", 10, -0.5, 9.5);
+  new TH1D("nj", "", 10, -0.5, 9.5);
+  new TH1D("nbj", "", 10, -0.5, 9.5);
+  new TH1D("nfj", "", 10, -0.5, 9.5);
+  new TH1D("nfbj", "", 10, -0.5, 9.5);
+
   new TH1D ("fj1_pt", "", 40, 0., 1000.);
   new TH1D ("fj2_pt", "", 40, 0., 1000.);
   new TH1D ("fj3_pt", "", 40, 0., 1000.);
@@ -149,150 +151,196 @@ void MultiLeptonMVAna::bookHistograms()
   new TH1D ("j3_pt", "", 40, 0., 1000.);
   new TH1D ("j4_pt", "", 40, 0., 1000.);
   new TH1D ("j5_pt", "", 40, 0., 1000.);
-  new TH1D("fj1j1dR", "", 100, -0.5, 4.5);
+
+
+  new TH1D ("j1_ak8clean_pt", "", 40, 0., 1000.);
+  new TH1D ("j2_ak8clean_pt", "", 40, 0., 1000.);
+  new TH1D ("j3_ak8clean_pt", "", 40, 0., 1000.);
+  new TH1D ("j4_ak8clean_pt", "", 40, 0., 1000.);
+  new TH1D ("j5_ak8clean_pt", "", 40, 0., 1000.);
+  new TH1D("fj1j1_ak8clean_dR", "", 100, -0.5, 4.5);
 
 
   histf()->cd();
   histf()->cd("Categorical_Analysis");
   new TH1D("evYield_nfatjets", "", 4, -0.5, 3.5);
-  //0 FATJET
+
+  //Resolved Category ........................0 FATJET
   //mumu event                                                                                                                                                                                            
   new TH1D("muon_1_mumu_pt_R", "", 300, 0., 300.);
   new TH1D("muon_2_mumu_pt_R", "", 300, 0., 300.);
-  new TH1D("mu1mu2dR_R", "", 100, -0.5, 4.5);
+  new TH1D("mu1mu2_dR_R", "", 100, -0.5, 4.5);
 
   //elel event                                                                                                                                                                                             
   new TH1D("ele_1_elel_pt_R", "", 300, 0., 300.);
   new TH1D("ele_2_elel_pt_R", "", 300, 0., 300.);
-  new TH1D("ele1ele2dR_R", "", 100, -0.5, 4.5);
+  new TH1D("ele1ele2_dR_R", "", 100, -0.5, 4.5);
 
-  //mu el event                                                                                                                                                                                            
+  //mu el event                                                                                                                                                                                             
   new TH1D("muon_muel_pt_R", "", 300, 0., 300.);
   new TH1D("ele_muel_pt_R", "", 300, 0., 300.);
-  new TH1D("mueldR_R", "", 100, -0.5, 4.5);
+  new TH1D("muel_dR_R", "", 100, -0.5, 4.5);
 
-  new TH1D("jet_1_pt_R", "", 200, 0., 1000.);
-  new TH1D("jet_2_pt_R", "", 200, 0., 1000.);
-  new TH1D("jet_3_pt_R", "", 200, 0., 1000.);
-  new TH1D("jet1jet2dR_R", "", 100, -0.5, 4.5);
-  new TH1D("jet2jet3dR_R", "", 100, -0.5, 4.5);
-  new TH1D("jet1jet3dR_R", "", 100, -0.5, 4.5);
-  new TH1D("jetdR_min_R", "", 100, -0.5, 4.5);
+  new TH1D("nj_R", "", 10, -0.5, 9.5);
+  new TH1D("j1lep1_dR_R","", 50, 0, 5);
+  new TH1D("j1lep2_dR_R","", 50, 0, 5);
+  new TH1D("j2lep1_dR_R","", 50, 0, 5);
+  new TH1D("j2lep2_dR_R","", 50, 0, 5);
+  new TH1D("j3lep1_dR_R","", 50, 0, 5);
+  new TH1D("j3lep2_dR_R","", 50, 0, 5);
+  new TH1D("j4lep1_dR_R","", 50, 0, 5);
+  new TH1D("j4lep2_dR_R","", 50, 0, 5);
+
+  new TH1D("j1_pt_R", "", 200, 0., 1000.);
+  new TH1D("j2_pt_R", "", 200, 0., 1000.);
+  new TH1D("j3_pt_R", "", 200, 0., 1000.);
+  new TH1D("j4_pt_R", "", 200, 0., 1000.);
+  new TH1D("j1j2_dR_R", "", 100, -0.5, 4.5);
+  new TH1D("j2j3_dR_R", "", 100, -0.5, 4.5);
+  new TH1D("j1j3_dR_R", "", 100, -0.5, 4.5);
+  new TH1D("j_dR_min_R", "", 100, -0.5, 4.5);
 
   new TH1D("hT_vector_all_R", "", 1000, 0, 5000);
   new TH1D("hT_scalar_all_R", "", 1000, 0, 5000);
-  new TH1D("hT_vector_jet_R", "", 1000, 0., 5000.);
-  new TH1D("hT_scalar_jet_R", "", 1000, 0., 5000.);
-  new TH1D("nslimjet_0fj", "", 10, -0.5, 9.5);
-
-  //FATJET >=1
-  new TH1D("nFatJetsall_nfj!0", "", 10, -0.5, 9.5);
-  //  new TH1D("nFatJetscut_20_nfj!0", "", 10, -0.5, 9.5);
+  new TH1D("hT_vector_j_R", "", 1000, 0., 5000.);
+  new TH1D("hT_scalar_j_R", "", 1000, 0., 5000.);
+  new TH1D("jInvM_R", "", 200, -50., 950.);
+ 
+  //Boosted Category .....................FATJET >=1
 
   //mumu event                                                                                                                                                                                             
   new TH1D("muon_1_mumu_pt_B", "", 300, 0., 300.);
   new TH1D("muon_2_mumu_pt_B", "", 300, 0., 300.);
-  new TH1D("mu1mu2dR_B", "", 100, -0.5, 4.5);
+  new TH1D("mu1mu2_dR_B", "", 100, -0.5, 4.5);
 
   //elel event                                                                                                                                                                                             
   new TH1D("ele_1_elel_pt_B", "", 300, 0., 300.);
   new TH1D("ele_2_elel_pt_B", "", 300, 0., 300.);
-  new TH1D("ele1ele2dR_B", "", 100, -0.5, 4.5);
+  new TH1D("ele1ele2_dR_B", "", 100, -0.5, 4.5);
 
   //mu el event                                                                                                                                                                                            
   new TH1D("muon_muel_pt_B", "", 300, 0., 300.);
   new TH1D("ele_muel_pt_B", "", 300, 0., 300.);
-  new TH1D("mueldR_B", "", 100, -0.5, 4.5);
+  new TH1D("muel_dR_B", "", 100, -0.5, 4.5);
 
   new TH1D("hT_vector_all_B", "", 1000, 0, 5000);
   new TH1D("hT_scalar_all_B", "", 1000, 0, 5000);
-  new TH1D("hT_vector_jet_B", "", 1000, 0., 5000.);
-  new TH1D("hT_scalar_jet_B", "", 1000, 0., 5000.);
-  new TH1D("hT_vector_fjet_B", "", 1000, 0., 5000.);
-  new TH1D("hT_scalar_fjet_B", "", 1000, 0., 5000.);
+  new TH1D("hT_vector_j_ak8clean_B", "", 1000, 0., 5000.);
+  new TH1D("hT_scalar_j_ak8clean_B", "", 1000, 0., 5000.);
+  new TH1D("hT_vector_fj_B", "", 1000, 0., 5000.);
+  new TH1D("hT_scalar_fj_B", "", 1000, 0., 5000.);
 
 
+  new TH1D("nj_ak8clean_B", "", 10, -0.5, 9.5);
+  new TH1D("nfj_B", "", 10, -0.5, 9.5);
 
 
   //FATJET ==1 
-  new TH1D ("fj1pt_1_B", "", 1000, 0., 1000.);
-  new TH1D ("fj1mass_1_B", "", 500, 0, 500);
-  new TH1D ("fj1massSD_1_B", "", 100, -50., 450.);
-  new TH1D ("fj1tau1_1_B", "", 100, 0, 1);
-  new TH1D ("fj1tau2_1_B", "", 100, 0, 1);
-  new TH1D ("fj1tau3_1_B", "", 100, 0, 1);
-  new TH1D ("fj1tau3ovtau2_1_B", "", 100, -0.5, 1.5);
-  new TH1D ("fj1tau2ovtau1_1_B", "", 100, -0.5, 1.5);
+  new TH1D ("fj1_pt_has1FatJet_B", "", 1000, 0., 1000.);
+  new TH1D ("fj1_mass_has1FatJet_B", "", 500, 0, 500);
+  new TH1D ("fj1_massSD_has1FatJet_B", "", 100, -50., 450.);
+  new TH1D ("fj1_tau1_has1FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj1_tau2_has1FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj1_tau3_has1FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj1_tau3ovtau2_has1FatJet_B", "", 100, -0.5, 1.5);
+  new TH1D ("fj1_tau2ovtau1_has1FatJet_B", "", 100, -0.5, 1.5);
 
   //subjet nFJ =1                                                                                                                                                                                         
                                                                              
-  new TH1D("s1fJet1Pt_1_B", "", 1000, 0., 1000.);
-  new TH1D("s1fJet1Mass_1_B", "", 100, -50.0, 450.0);
+  new TH1D("s1fj1_pt_has1FatJet_B", "", 1000, 0., 1000.);
+  new TH1D("s1fj1_mass_has1FatJet_B", "", 100, -50.0, 450.0);
 
-  new TH1D("s2fJet1Pt_1_B", "", 1000, 0., 1000.);
-  new TH1D("s2fJet1Mass_1_B", "", 100, -50.0, 450.0);
+  new TH1D("s2fj1_pt_has1FatJet_B", "", 1000, 0., 1000.);
+  new TH1D("s2fj1_mass_has1FatJet_B", "", 100, -50.0, 450.0);
 
-  new TH1D ("fj1InvM_1_B", "", 100, -50., 450.);
-  new TH1D("nslimjet_1_B", "", 10, -0.5, 9.5);
-  //jet size=1                                                                                                                                                                                             
-  new TH1D("jet_1_pt_1_1_B", "", 200, 0., 1000.);
-  //jet size>1                                                                                                                                                                                             
-  new TH1D("jet_1_pt_>1_1_B", "", 200, 0., 1000.);
-  new TH1D("jet_2_pt_>1_1_B", "", 200, 0., 1000.);
-  new TH1D("jet1jet2dR_>1_1_B", "", 100, -0.5, 4.5);
+  new TH1D ("fjInvM_has1FatJet_B", "", 100, -50., 450.);
+  //  new TH1D ("fjInvM_has1FatJet_B", "", 100, -50., 450.);
+
+
+
+  new TH1D("nj_ak8clean_has1FatJet_B", "", 10, -0.5, 9.5);
+
+
+  //jetColl_ak8clean.size()>=1                                                                                                                                                                
+  new TH1D("j1_ak8clean_pt_has1FatJet_B", "", 200, 0., 1000.);
+  new TH1D("j1_ak8cleanfj_dR_has1FatJet_B","", 50, 0, 5);  
+
+  //jetColl_ak8clean.size()>=2                                                                                                                                                                                
+  new TH1D("j2_ak8clean_pt_has1FatJet_B", "", 200, 0., 1000.);
+  new TH1D("j2_ak8cleanfj_dR_has1FatJet_B", "", 50, 0., 5);
+  new TH1D("j1j2_ak8clean_dR_has1FatJet_B", "", 100, -0.5, 4.5);
+
+  //jetColl_ak8clean.size()>=3
+  new TH1D("j3_ak8clean_pt_has1FatJet_B", "", 200, 0., 1000.);
+  new TH1D("j3_ak8cleanfj_dR_has1FatJet_B", "", 50, 0., 5);
+
+
 
 
 
   //FATJET >1
   // fjet no 1                                                                                                                                                                                             
-  new TH1D ("fj1pt_2_B", "", 1000, 0., 1000.);
-  new TH1D ("fj1mass_2_B", "", 500, 0, 500);
-  new TH1D ("fj1massSD_2_B", "", 100, -50., 450.);
-  new TH1D ("fj1tau1_2_B", "", 100, 0, 1);
-  new TH1D ("fj1tau2_2_B", "", 100, 0, 1);
-  new TH1D ("fj1tau3_2_B", "", 100, 0, 1);
-  new TH1D ("fj1tau3ovtau2_2_B", "", 100, -0.5, 1.5);
+  new TH1D ("fj1_pt_has2FatJet_B", "", 1000, 0., 1000.);
+  new TH1D ("fj1_mass_has2FatJet_B", "", 500, 0, 500);
+  new TH1D ("fj1_massSD_has2FatJet_B", "", 100, -50., 450.);
+  new TH1D ("fj1_tau1_has2FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj1_tau2_has2FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj1_tau3_has2FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj1_tau3ovtau2_has2FatJet_B", "", 100, -0.5, 1.5);
+
+  //subjet                                                                                                                                                                       
+  new TH1D("s1fj1_pt_has2FatJet_B", "", 1000, 0., 1000.);
+  new TH1D("s1fj1_mass_has2FatJet_B", "", 100, -50.0, 450.0);
+
+  new TH1D("s2fj1_pt_has2FatJet_B", "", 1000, 0., 1000.);
+  new TH1D("s2fj1_mass_has2FatJet_B", "", 100, -50.0, 450.0);
+
+  new TH1D("fj1InvM_has2FatJet_B", "", 100, -50., 450.);
+  //new TH1D("fj1InvM_has2FatJet_B", "", 100, -50., 450.);
+
+  // fjet no 2                                                                                                                    
+
+  new TH1D ("fj2_pt_has2FatJet_B", "", 1000, 0., 1000.);
+  new TH1D ("fj2_mass_has2FatJet_B", "", 500, 0, 500);
+  new TH1D ("fj2_massSD_has2FatJet_B", "", 100, -50., 450.);
+  new TH1D ("fj2_tau1_has2FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj2_tau2_has2FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj2_tau3_has2FatJet_B", "", 100, 0, 1);
+  new TH1D ("fj2_tau3ovtau2_has2FatJet_B", "", 100, -0.5, 1.5);
 
   //subjet                                                                                                                                                                                                 
+  new TH1D("s1fj2_pt_has2FatJet_B", "", 1000, 0., 1000.);
+  new TH1D("s1fj2_mass_has2FatJet_B", "", 100, -50.0, 450.0);
+
+  new TH1D("s2fj2_pt_has2FatJet_B", "", 1000, 0., 1000.);
+  new TH1D("s2fj2_mass_has2FatJet_B", "", 100, -50.0, 450.0);
+
+  new TH1D("fj2InvM_has2FatJet_B", "", 100, -50., 450.);
+  //new TH1D("fj2InvM_has2FatJet_B", "", 100, -50., 450.);
+                                                                                                     
 
 
-  new TH1D("s1fJet1Pt_2_B", "", 1000, 0., 1000.);
-  new TH1D("s1fJet1Mass_2_B", "", 100, -50.0, 450.0);
+  new TH1D("nj_ak8clean_has2FatJet_B", "", 10, -0.5, 9.5);
+                                                                                                     
+  //jetColl_ak8clean.size()>=1                                                                                                    
+  new TH1D("j1_ak8clean_pt_has2FatJet_B", "", 200, 0., 1000.);
+  new TH1D("j1_ak8cleanfj1_dR_has2FatJet_B","", 50, 0, 5);
+  new TH1D("j1_ak8cleanfj2_dR_has2FatJet_B","", 50, 0, 5);
 
-  new TH1D("s2fJet1Pt_2_B", "", 1000, 0., 1000.);
-  new TH1D("s2fJet1Mass_2_B", "", 100, -50.0, 450.0);
+  //jetColl_ak8clean.size()>=2                                                                                                    
+  new TH1D("j2_ak8clean_pt_has2FatJet_B", "", 200, 0., 1000.);
+  new TH1D("j2_ak8cleanfj1_dR_has2FatJet_B", "", 50, 0., 5);
+  new TH1D("j2_ak8cleanfj2_dR_has2FatJet_B", "", 50, 0., 5);
+  new TH1D("j1j2_ak8clean_dR_has2FatJet_B", "", 100, -0.5, 4.5);
+ 
+  //jetColl_ak8clean.size()>=3                                                                                                     
+  new TH1D("j3_ak8clean_pt_has2FatJet_B", "", 200, 0., 1000.);
+  new TH1D("j3_ak8cleanfj1_dR_has2FatJet_B", "", 50, 0., 5);
+  new TH1D("j3_ak8cleanfj2_dR_has2FatJet_B", "",50, 0., 5);
 
-  new TH1D("fj1InvM_2_B", "", 100, -50., 450.);
+  // new TH1D("fjInvM_has2FatJet_usingsubjet_B", "", 100, -50., 450.);
+  // new TH1D("fjInvM_has2FatJet_B", "", 100, -50., 450.);
 
-  // fjet no 2                                                                                                                                                                                             
-
-  new TH1D ("fj2pt_2_B", "", 1000, 0., 1000.);
-  new TH1D ("fj2mass_2_B", "", 500, 0, 500);
-  new TH1D ("fj2massSD_2_B", "", 500, -50., 450.);
-  new TH1D ("fj2tau1_2_B", "", 100, 0, 1);
-  new TH1D ("fj2tau2_2_B", "", 100, 0, 1);
-  new TH1D ("fj2tau3_2_B", "", 100, 0, 1);
-  new TH1D ("fj2tau3ovtau2_2_B", "", 100, -0.5, 1.5);
-  new TH1D ("fj2tau2ovtau1_2_B", "", 100, -0.5, 1.5);
-
-  //subjet                                                                                                                                                                                                 
-
-  new TH1D("s1fJet2Pt_2_B", "", 1000, 0., 1000.);
-  new TH1D("s1fJet2Mass_2_B", "", 100, -50.0, 450.0);
-
-  new TH1D("s2fJet2Pt_2_B", "", 1000, 0., 1000.);
-  new TH1D("s2fJet2Mass_2_B", "", 100, -50.0, 450.0);
-
-  new TH1D("fj1InvM_2_B", "", 100, -50., 450.);
-  new TH1D("fj2InvM_2_B", "", 100, -50., 450.);
-  new TH1D("nslimjet_2_B", "", 10, -0.5, 9.5);
-
-  //jet size=1                                                                                                                                                                                             
-  new TH1D("jet_1_pt_1_2_B", "", 200, 0., 1000.);
-  //jet size>1                                                                                                                                                                                             
-  new TH1D("jet_1_pt_>1_2_B", "", 200, 0., 1000.);
-  new TH1D("jet_2_pt_>1_2_B", "", 200, 0., 1000.);
-  new TH1D("jet1jet2dR_>1_2_B", "", 100, -0.5, 4.5);
 
   histf()->cd();
   histf()->ls();
@@ -501,6 +549,7 @@ void MultiLeptonMVAna::eventLoop()
     const auto& subJetColl     = getSubJetList();                                                                                                                                     
     const auto& fatbJetColl    = getBTaggedFatJetList();
     const auto& tauColl        = getLepCleanTauList();
+    const auto& jetColl_ak8clean        = getSJetCleanJetList(); //all ak8 cleanjets                                                                                                                                             
     const vhtm::MET& met       = getMETList().at(0);
 
     
@@ -508,6 +557,7 @@ void MultiLeptonMVAna::eventLoop()
     int nfJet = fatJetColl.size();
     int nbJet = bJetColl.size();
     int nbfJet = fatbJetColl.size();
+    int nJet_ak8clean = jetColl_ak8clean.size();
 
 
     //P A C K I N G  L E P T O N S
@@ -601,20 +651,20 @@ void MultiLeptonMVAna::eventLoop()
       AnaUtil::fillHist1D("evtCutFlow", 11);
       if (isMC()) AnaUtil::fillHist1D("evtCutFlowWt", 11, allWt);
       }
+    */
 
-    /*  int nGoodLepton =tightLepColl.size();
-    if(nGoodLepton != 2) continue;    //ensuring two tight leptons                                                                                                                       */                        
+     
     histf()->cd();
     histf()->cd("Analysis");
-
-    AnaUtil::fillHist1D ("nJets", nJet, allWt);
-    AnaUtil::fillHist1D ("nbJets", nbJet, allWt);
-    AnaUtil::fillHist1D ("nFatJets", nfJet, allWt);
-    AnaUtil::fillHist1D ("nFatbJets", nbfJet, allWt);
+    AnaUtil::fillHist1D ("nj_ak8clean", nJet_ak8clean, allWt);
+    AnaUtil::fillHist1D ("nj", nJet, allWt);
+    AnaUtil::fillHist1D ("nbj", nbJet, allWt);
+    AnaUtil::fillHist1D ("nfj", nfJet, allWt);
+    AnaUtil::fillHist1D ("nfbj", nbfJet, allWt);
     if(nfJet >= 1) {
       AnaUtil::fillHist1D ("fj1_pt", fatJetColl[0].pt, allWt);
-      if(nJet >=1 ) 
-	AnaUtil::fillHist1D ("fj1j1dR", AnaUtil::getP4(fatJetColl[0]).DeltaR(AnaUtil::getP4(jetColl[0])),allWt);
+      if(nJet_ak8clean >=1 ) 
+	AnaUtil::fillHist1D ("fj1j1_ak8clean_dR", AnaUtil::getP4(fatJetColl[0]).DeltaR(AnaUtil::getP4(jetColl_ak8clean[0])),allWt);
     }
 
     if(nfJet >= 2)
@@ -637,14 +687,53 @@ void MultiLeptonMVAna::eventLoop()
     if(nJet >= 5)
       AnaUtil::fillHist1D ("j5_pt", jetColl[4].pt, allWt);
 
-    bool isResolved = (jetColl.size() >= 3 && fatJetColl.size() == 0 && bJetColl.size()==0) ? true : false; //either WW or WZ events...
-    bool isBoosted  = (fatJetColl.size() >= 1 && bJetColl.size()==0 && fatbJetColl.size()==0) ? true : false; //either WW or WZ events...
 
+    if(nJet_ak8clean >= 1)
+      AnaUtil::fillHist1D ("j1_ak8clean_pt", jetColl_ak8clean[0].pt, allWt);
+    if(nJet_ak8clean >= 2)
+      AnaUtil::fillHist1D ("j2_ak8clean_pt", jetColl_ak8clean[1].pt, allWt);
+    if(nJet_ak8clean >= 3)
+      AnaUtil::fillHist1D ("j3_ak8clean_pt", jetColl_ak8clean[2].pt, allWt);
+    if(nJet_ak8clean >= 4)
+      AnaUtil::fillHist1D ("j4_ak8clean_pt", jetColl_ak8clean[3].pt, allWt);
+    if(nJet_ak8clean >= 5)
+      AnaUtil::fillHist1D ("j5_ak8clean_pt", jetColl_ak8clean[4].pt, allWt);
+
+
+    bool isResolved = (jetColl.size() >= 3 && fatJetColl.size() == 0 && bJetColl.size()==0) ? true : false;    //either WW or WZ events...
+    bool isBoosted  = (fatJetColl.size() >= 1 && bJetColl.size()==0 && fatbJetColl.size()==0) ? true : false;  //either WW or WZ events...
+    
                         
     histf()->cd();
     histf()->cd("Categorical_Analysis");
 
+
     if(isResolved) {
+      AnaUtil::fillHist1D("nj_R", jetColl.size(), allWt);
+      AnaUtil::fillHist1D ("j1lep1_dR_R", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[0])),allWt);
+      AnaUtil::fillHist1D ("j1lep2_dR_R", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+      AnaUtil::fillHist1D ("j2lep1_dR_R", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(tightLepColl[0])),allWt);
+      AnaUtil::fillHist1D ("j2lep2_dR_R", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+      AnaUtil::fillHist1D ("j3lep1_dR_R", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(tightLepColl[0])),allWt);
+      AnaUtil::fillHist1D ("j3lep2_dR_R", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+
+      if(jetColl.size() == 3) {
+        TLorentzVector jetp4;
+        for (auto& jet : jetColl)
+          jetp4 = jetp4 +  AnaUtil::getP4(jet);
+	AnaUtil::fillHist1D ("jInvM_R", jetp4.M(), allWt);
+      }
+
+      if(jetColl.size() >3) {
+        TLorentzVector jetp4;
+        for (auto& jet : jetColl)
+          jetp4 = jetp4 + AnaUtil::getP4(jet);
+	AnaUtil::fillHist1D ("j4lep1_dR_R", AnaUtil::getP4(jetColl[3]).DeltaR(AnaUtil::getP4(tightLepColl[0])),allWt);
+	AnaUtil::fillHist1D ("j4lep2_dR_R", AnaUtil::getP4(jetColl[3]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+	AnaUtil::fillHist1D ("j4_pt_R", jetColl[3].pt, allWt);
+ 	AnaUtil::fillHist1D ("jInvM_R", jetp4.M(), allWt);
+      }
+
       TLorentzVector metp4;
       TLorentzVector hT_vector_all;
       double hT_scalar_all = 0.;
@@ -652,6 +741,7 @@ void MultiLeptonMVAna::eventLoop()
       TLorentzVector jp4;
       double jet_dR_min =10.00;
       double check;
+
       for(unsigned int i=0 ; i < jetColl.size() ; i++) {
 	jp4 = jp4 + AnaUtil::getP4( jetColl[i]);
         hT_scalar_jet = hT_scalar_jet + jetColl[i].pt;
@@ -670,156 +760,161 @@ void MultiLeptonMVAna::eventLoop()
 	if(tightLepColl[0].flavour == 1){
 	  AnaUtil::fillHist1D ("muon_1_mumu_pt_R",tightLepColl[0].pt ,allWt);
 	  AnaUtil::fillHist1D ("muon_2_mumu_pt_R",tightLepColl[1].pt ,allWt);
-	  AnaUtil::fillHist1D ("mu1mu2dR_R", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+	  AnaUtil::fillHist1D ("mu1mu2_dR_R", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
 	}
 	if(tightLepColl[0].flavour == 2){
 	  AnaUtil::fillHist1D ("ele_1_elel_pt_R",tightLepColl[0].pt ,allWt);
 	  AnaUtil::fillHist1D ("ele_2_elel_pt_R",tightLepColl[1].pt ,allWt);
-	  AnaUtil::fillHist1D ("ele1ele2dR_R", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+	  AnaUtil::fillHist1D ("ele1ele2_dR_R", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
 	}
       }
       else {
 	AnaUtil::fillHist1D ("muon_muel_pt_R",tightLepColl[0].pt , allWt);
 	AnaUtil::fillHist1D ("ele_muel_pt_R",tightLepColl[1].pt , allWt);
-	AnaUtil::fillHist1D ("mueldR_R", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+	AnaUtil::fillHist1D ("muel_dR_R", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
       }
 
-      AnaUtil::fillHist1D ("jet_1_pt_R", jetColl[0].pt, allWt);
-      AnaUtil::fillHist1D ("jet_2_pt_R", jetColl[1].pt,allWt);
-      AnaUtil::fillHist1D ("jet_3_pt_R", jetColl[2].pt, allWt);
-      AnaUtil::fillHist1D ("jet1jet2dR_R", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])),allWt);
-      AnaUtil::fillHist1D ("jet2jet3dR_R", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(jetColl[2])),allWt);
-      AnaUtil::fillHist1D ("jet1jet3dR_R", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[2])),allWt);
-      AnaUtil::fillHist1D ("jetdR_min_R", jet_dR_min,allWt);
-      AnaUtil::fillHist1D ("hT_vector_jet_R", jp4.Pt(), 1);
-      AnaUtil::fillHist1D ("hT_scalar_jet_R",hT_scalar_jet, 1);
+      AnaUtil::fillHist1D ("j1_pt_R", jetColl[0].pt, allWt);
+      AnaUtil::fillHist1D ("j2_pt_R", jetColl[1].pt,allWt);
+      AnaUtil::fillHist1D ("j3_pt_R", jetColl[2].pt, allWt);
+      AnaUtil::fillHist1D ("j1j2_dR_R", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])),allWt);
+      AnaUtil::fillHist1D ("j2j3_dR_R", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(jetColl[2])),allWt);
+      AnaUtil::fillHist1D ("j1j3_dR_R", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[2])),allWt);
+      AnaUtil::fillHist1D ("j_dR_min_R", jet_dR_min,allWt);
+      AnaUtil::fillHist1D ("hT_vector_j_R", jp4.Pt(), 1);
+      AnaUtil::fillHist1D ("hT_scalar_j_R",hT_scalar_jet, 1);
       AnaUtil::fillHist1D("hT_vector_all_R", hT_vector_all.Pt(), 1);
       AnaUtil::fillHist1D("hT_scalar_all_R", hT_scalar_all, 1);
-      AnaUtil::fillHist1D("nslimjet_0fj", jetColl.size(), 1);
       AnaUtil::fillHist1D ("evYield_nfatjets", 0, allWt);
     }
 
-
+    
     if(isBoosted) {
-      // AnaUtil::fillHist1D ("nFatJetsall_nfj!0", nfJet, allWt);
-      // int cut=0;
-      double hT_scalar_fjet = 0.;
-      TLorentzVector fjp4;
-      for (auto& fj: fatJetColl) {
-	fjp4 = fjp4 + AnaUtil::getP4(fj);
-	hT_scalar_fjet = hT_scalar_fjet + fj.pt;
-	// if(fj.softDropMass < 20.0)
-	//cut++;
+      AnaUtil::fillHist1D ("nfj_B", nfJet, allWt);
+      AnaUtil::fillHist1D ("nj_ak8clean_B", nJet_ak8clean, allWt);
+
+      if(tightLepColl[0].flavour == tightLepColl[1].flavour) {
+        if(tightLepColl[0].flavour == 1){
+	  AnaUtil::fillHist1D ("muon_1_mumu_pt_B",tightLepColl[0].pt ,allWt);
+	  AnaUtil::fillHist1D ("muon_2_mumu_pt_B",tightLepColl[1].pt ,allWt);
+	  AnaUtil::fillHist1D ("mu1mu2_dR_B", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+        }
+        if(tightLepColl[0].flavour == 2){
+	  AnaUtil::fillHist1D ("ele_1_elel_pt_B",tightLepColl[0].pt ,allWt);
+	  AnaUtil::fillHist1D ("ele_2_elel_pt_B",tightLepColl[1].pt ,allWt);
+	  AnaUtil::fillHist1D ("ele1ele2_dR_B", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+        }
       }
-      // if(cut == 0) {
-      //	AnaUtil::fillHist1D ("nFatJetsabovecut_20_nfj!0", nfJet, allWt);
-	double hT_scalar_jet = 0.;
-	double hT_scalar_all = 0.;
-        TLorentzVector jp4;
-        TLorentzVector metp4;
-        TLorentzVector hT_vector_all;
-	for(auto& j: jetColl) {
-	  jp4 = jp4 + AnaUtil::getP4(j);
-	  hT_scalar_jet = hT_scalar_jet + j.pt;
-	}
-
-        metp4.SetPtEtaPhiE(met.pt, 0.0, met.phi, met.pt);
-        hT_vector_all = jp4 + fjp4 + AnaUtil::getP4(tightLepColl[0]) + AnaUtil::getP4(tightLepColl[1]) + metp4;
-        hT_scalar_all = hT_scalar_all + hT_scalar_jet + hT_scalar_fjet + tightLepColl[0].pt + tightLepColl[1].pt + met.pt;
-	AnaUtil::fillHist1D ("hT_vector_jet_B", jp4.Pt(), 1);
-	AnaUtil::fillHist1D ("hT_scalar_jet_B",hT_scalar_jet, 1);
-	AnaUtil::fillHist1D ("hT_vector_fjet_B", fjp4.Pt(), 1);
-	AnaUtil::fillHist1D ("hT_scalar_fjet_B",hT_scalar_fjet, 1);
-	AnaUtil::fillHist1D("hT_vector_all_B", hT_vector_all.Pt(), 1);
-	AnaUtil::fillHist1D("hT_scalar_all_B", hT_scalar_all, 1);
-
-	if(tightLepColl[0].flavour == tightLepColl[1].flavour) {
-          if(tightLepColl[0].flavour == 1){
-	    AnaUtil::fillHist1D ("muon_1_mumu_pt_B",tightLepColl[0].pt ,allWt);
-	    AnaUtil::fillHist1D ("muon_2_mumu_pt_B",tightLepColl[1].pt ,allWt);
-	    AnaUtil::fillHist1D ("mu1mu2dR_B", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
-          }
-          if(tightLepColl[0].flavour == 2){
-	    AnaUtil::fillHist1D ("ele_1_elel_pt_B",tightLepColl[0].pt ,allWt);
-	    AnaUtil::fillHist1D ("ele_2_elel_pt_B",tightLepColl[1].pt ,allWt);
-	    AnaUtil::fillHist1D ("ele1ele2dR_B", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
-          }
-        }
-        else {
-	  AnaUtil::fillHist1D ("muon_muel_pt_B",tightLepColl[0].pt , allWt);
-	  AnaUtil::fillHist1D ("ele_muel_pt_B",tightLepColl[1].pt , allWt);
-	  AnaUtil::fillHist1D ("mueldR_B", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
-        }
+      else {
+	AnaUtil::fillHist1D ("muon_muel_pt_B",tightLepColl[0].pt , allWt);
+	AnaUtil::fillHist1D ("ele_muel_pt_B",tightLepColl[1].pt , allWt);
+	AnaUtil::fillHist1D ("muel_dR_B", AnaUtil::getP4(tightLepColl[0]).DeltaR(AnaUtil::getP4(tightLepColl[1])),allWt);
+      }
 
 
-	if(fatJetColl.size() == 1) {
-	  AnaUtil::fillHist1D ("fj1pt_1_B", fatJetColl[0].pt, allWt);
-	  AnaUtil::fillHist1D ("fj1mass_1_B",fatJetColl[0].mass, allWt);
-	  AnaUtil::fillHist1D ("fj1massSD_1_B", fatJetColl[0].softDropMass, allWt);
-	  AnaUtil::fillHist1D ("fj1tau1_1_B", fatJetColl[0].tau1, allWt);
-	  AnaUtil::fillHist1D ("fj1tau2_1_B", fatJetColl[0].tau2, allWt);
-	  AnaUtil::fillHist1D ("fj1tau3_1_B", fatJetColl[0].tau3, allWt);
-	  AnaUtil::fillHist1D ("fj1tau3ovtau2_1_B", fatJetColl[0].tau3/fatJetColl[0].tau2, allWt);
-	  AnaUtil::fillHist1D ("fj1tau2ovtau1_1_B", fatJetColl[0].tau2/fatJetColl[0].tau1, allWt);
-          unsigned int i1 = fatJetColl[0].subJetIdx1;
-          unsigned int i2 = fatJetColl[0].subJetIdx2;
-          TLorentzVector Fj1InvMass_1;
-          for (auto& fj: subJetColl) {
-            if(fj.index == i1) {
-              float subjet1_pt =  fj.pt;
-              float subjet1_mass = fj.mass;
-              AnaUtil::fillHist1D ("s1fJet1Pt_1_B", subjet1_pt, allWt);
-	      AnaUtil::fillHist1D ("s1fJet1Mass_1_B", subjet1_mass, allWt);
-              Fj1InvMass_1 = Fj1InvMass_1 + AnaUtil::getP4(fj);
-	    }
-	    else  if(fj.index == i2) {
-	      float subjet2_pt =fj.pt;
-	      float subjet2_mass = fj.mass;
+      double hT_scalar_fjet = 0.;
+      double hT_scalar_jet = 0.;
+      double hT_scalar_all = 0.;
+      TLorentzVector fjp4;
+      TLorentzVector jp4;
+      TLorentzVector metp4;
+      TLorentzVector hT_vector_all;
 
-	      AnaUtil::fillHist1D ("s2fJet1Pt_1_B", subjet2_pt, allWt);
-	      AnaUtil::fillHist1D ("s2fJet1Mass_1_B", subjet2_mass, allWt);
+      for (auto& fj: fatJetColl) {
+        fjp4 = fjp4 + AnaUtil::getP4(fj);
+        hT_scalar_fjet = hT_scalar_fjet + fj.pt;
+        // if(fj.softDropMass < 20.0)                                                                                                                                                                              //cut++;                                                                                                                                                                                           
+      }
+      // if(cut == 0) {                                                                                                                                                                                         //        AnaUtil::fillHist1D ("nFatJetsabovecut_20_nfj!0", nfJet, allWt);                                                                                                                           
+      for(auto& j: jetColl_ak8clean) {
+	jp4 = jp4 + AnaUtil::getP4(j);
+	hT_scalar_jet = hT_scalar_jet + j.pt;
+      }
 
-	      Fj1InvMass_1 = Fj1InvMass_1 + AnaUtil::getP4(fj);
-	    }
+      metp4.SetPtEtaPhiE(met.pt, 0.0, met.phi, met.pt);
+      hT_vector_all = jp4 + fjp4 + AnaUtil::getP4(tightLepColl[0]) + AnaUtil::getP4(tightLepColl[1]) + metp4;
+      hT_scalar_all = hT_scalar_all + hT_scalar_jet + hT_scalar_fjet + tightLepColl[0].pt + tightLepColl[1].pt + met.pt;
+      AnaUtil::fillHist1D ("hT_vector_j_ak8clean_B", jp4.Pt(), 1);
+      AnaUtil::fillHist1D ("hT_scalar_j_ak8clean_B",hT_scalar_jet, 1);
+      AnaUtil::fillHist1D ("hT_vector_fj_B", fjp4.Pt(), 1);
+      AnaUtil::fillHist1D ("hT_scalar_fj_B",hT_scalar_fjet, 1);
+      AnaUtil::fillHist1D("hT_vector_all_B", hT_vector_all.Pt(), 1);
+      AnaUtil::fillHist1D("hT_scalar_all_B", hT_scalar_all, 1);
+
+
+      if(fatJetColl.size() == 1) {
+	AnaUtil::fillHist1D ("fj1_pt_has1FatJet_B", fatJetColl[0].pt, allWt);
+	AnaUtil::fillHist1D ("fj1_mass_has1FatJet_B",fatJetColl[0].mass, allWt);
+	AnaUtil::fillHist1D ("fj1_massSD_has1FatJet_B", fatJetColl[0].softDropMass, allWt);
+	AnaUtil::fillHist1D ("fj1_tau1_has1FatJet_B", fatJetColl[0].tau1, allWt);
+	AnaUtil::fillHist1D ("fj1_tau2_has1FatJet_B", fatJetColl[0].tau2, allWt);
+	AnaUtil::fillHist1D ("fj1_tau3_has1FatJet_B", fatJetColl[0].tau3, allWt);
+	AnaUtil::fillHist1D ("fj1_tau3ovtau2_has1FatJet_B", fatJetColl[0].tau3/fatJetColl[0].tau2, allWt);
+	AnaUtil::fillHist1D ("fj1_tau2ovtau1_has1FatJet_B", fatJetColl[0].tau2/fatJetColl[0].tau1, allWt);
+	unsigned int i1 = fatJetColl[0].subJetIdx1;
+	unsigned int i2 = fatJetColl[0].subJetIdx2;
+	TLorentzVector Fj1InvMass_1;
+	for (auto& fj: subJetColl) {
+	  if(fj.index == i1) {
+	    float subjet1_pt =  fj.pt;
+	    float subjet1_mass = fj.mass;
+	    AnaUtil::fillHist1D ("s1fj1_pt_has1FatJet_B", subjet1_pt, allWt);
+	    AnaUtil::fillHist1D ("s1fj1_mass_has1FatJet_B", subjet1_mass, allWt);
+	    Fj1InvMass_1 = Fj1InvMass_1 + AnaUtil::getP4(fj);
 	  }
-	  AnaUtil::fillHist1D ("fj1InvM_1_B", Fj1InvMass_1.M(), allWt);
-	  AnaUtil::fillHist1D ("nslimjet_1_B", jetColl.size(), allWt);
-	  
-          if(jetColl.size()==1) {
-	    AnaUtil::fillHist1D ("jet_1_pt_1_1_B", jetColl[0].pt, allWt);
-          }
-	  if(jetColl.size() > 1) {
-	    AnaUtil::fillHist1D ("jet_1_pt_>1_1_B", jetColl[0].pt, allWt);
-	    AnaUtil::fillHist1D ("jet_2_pt_>1_1_B", jetColl[1].pt,allWt);
-	    AnaUtil::fillHist1D ("jet1jet2dR_>1_1_B", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])),allWt);
+	  else  if(fj.index == i2) {
+	    float subjet2_pt =fj.pt;
+	    float subjet2_mass = fj.mass;
+
+	    AnaUtil::fillHist1D ("s2fj1_pt_has1FatJet_B", subjet2_pt, allWt);
+	    AnaUtil::fillHist1D ("s2fj1_mass_has1FatJet_B", subjet2_mass, allWt);
+
+	    Fj1InvMass_1 = Fj1InvMass_1 + AnaUtil::getP4(fj);
 	  }
 	}
+	
+	AnaUtil::fillHist1D ("fjInvM_has1FatJet_B", Fj1InvMass_1.M(), allWt);
+	//	AnaUtil::fillHist1D ("fjInvM_has1FatJet_B", AnaUtil::getP4(fatJetColl[0]).M(), allWt);
+	AnaUtil::fillHist1D("nj_ak8clean_has1FatJet_B", jetColl_ak8clean.size(), allWt);
 
 
-	if(nfJet >= 2){
-          // histf()->cd();                                                                                                                                                                                
-          //histf()->cd("TMVAnalysis");                                                                                                                                                                    
+      
+	if(jetColl_ak8clean.size()>=1) {
+	  AnaUtil::fillHist1D ("j1_ak8cleanfj_dR_has1FatJet_B", AnaUtil::getP4(jetColl_ak8clean[0]).DeltaR(AnaUtil::getP4(fatJetColl[0])),allWt);
+	  AnaUtil::fillHist1D ("j1_ak8clean_pt_has1FatJet_B", jetColl_ak8clean[0].pt, allWt);
+	}
+	if(jetColl_ak8clean.size()>=2) {
+	  AnaUtil::fillHist1D ("j2_ak8cleanfj_dR_has1FatJet_B", AnaUtil::getP4(jetColl_ak8clean[1]).DeltaR(AnaUtil::getP4(fatJetColl[0])),allWt);
+	  AnaUtil::fillHist1D ("j2_ak8clean_pt_has1FatJet_B", jetColl_ak8clean[1].pt, allWt);
+	  AnaUtil::fillHist1D ("j1j2_ak8clean_dR_has1FatJet_B", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])),allWt);
+	}
+	if(jetColl_ak8clean.size()>=3) {
+	AnaUtil::fillHist1D ("j3_ak8cleanfj_dR_has1FatJet_B", AnaUtil::getP4(jetColl_ak8clean[2]).DeltaR(AnaUtil::getP4(fatJetColl[0])),allWt);
+	AnaUtil::fillHist1D ("j3_ak8clean_pt_has1FatJet_B", jetColl_ak8clean[2].pt, allWt);
+	}
+	
+      }
 
-	  AnaUtil::fillHist1D ("fj1pt_2_B", fatJetColl[0].pt, allWt);
-	  AnaUtil::fillHist1D ("fj1mass_2_B", fatJetColl[0].mass, allWt);
-	  AnaUtil::fillHist1D ("fj1massSD_2_B",fatJetColl[0].softDropMass, allWt);
-	  AnaUtil::fillHist1D ("fj1tau1_2_B", fatJetColl[0].tau1, allWt);
-	  AnaUtil::fillHist1D ("fj1tau2_2_B", fatJetColl[0].tau2, allWt);
-	  AnaUtil::fillHist1D ("fj1tau3_2_B", fatJetColl[0].tau3, allWt);
-	  AnaUtil::fillHist1D ("fj1tau3ovtau2_2_B", fatJetColl[0].tau3/fatJetColl[0].tau2, allWt);
-	  AnaUtil::fillHist1D ("fj1tau2ovtau1_2_B", fatJetColl[0].tau2/fatJetColl[0].tau1, allWt);
+      if(fatJetColl.size() >= 2) {
 
+	AnaUtil::fillHist1D ("fj1_pt_has2FatJet_B", fatJetColl[0].pt, allWt);
+	AnaUtil::fillHist1D ("fj1_mass_has2FatJet_B", fatJetColl[0].mass, allWt);
+	AnaUtil::fillHist1D ("fj1_massSD_has2FatJet_B",fatJetColl[0].softDropMass, allWt);
+	AnaUtil::fillHist1D ("fj1_tau1_has2FatJet_B", fatJetColl[0].tau1, allWt);
+	AnaUtil::fillHist1D ("fj1_tau2_has2FatJet_B", fatJetColl[0].tau2, allWt);
+	AnaUtil::fillHist1D ("fj1_tau3_has2FatJet_B", fatJetColl[0].tau3, allWt);                                             
+	AnaUtil::fillHist1D ("fj1_tau3ovtau2_has2FatJet_B", fatJetColl[0].tau3/fatJetColl[0].tau2, allWt);                  
+	AnaUtil::fillHist1D ("fj1_tau2ovtau1_has2FatJet_B", fatJetColl[0].tau2/fatJetColl[0].tau1, allWt); 
 
-	  AnaUtil::fillHist1D ("fj2pt_2_B", fatJetColl[1].pt, allWt);
-	  AnaUtil::fillHist1D ("fj2mass_2_B", fatJetColl[1].mass, allWt);
-	  AnaUtil::fillHist1D ("fj2massSD_2_B", fatJetColl[1].softDropMass, allWt);
-	  AnaUtil::fillHist1D ("fj2tau1_2_B", fatJetColl[1].tau1, allWt);
-	  AnaUtil::fillHist1D ("fj2tau2_2_B", fatJetColl[1].tau2, allWt);
-	  AnaUtil::fillHist1D ("fj2tau3_2_B", fatJetColl[1].tau3, allWt);
-	  AnaUtil::fillHist1D ("fj2tau3ovtau2_2_B", fatJetColl[1].tau3/fatJetColl[1].tau2, allWt);
-	  AnaUtil::fillHist1D ("fj2tau2ovtau1_2_B", fatJetColl[1].tau2/fatJetColl[1].tau1, allWt);
-
-
+	AnaUtil::fillHist1D ("fj2_pt_has2FatJet_B", fatJetColl[1].pt, allWt);
+	AnaUtil::fillHist1D ("fj2_mass_has2FatJet_B", fatJetColl[1].mass, allWt);
+	AnaUtil::fillHist1D ("fj2_massSD_has2FatJet_B", fatJetColl[1].softDropMass, allWt);
+	AnaUtil::fillHist1D ("fj2_tau1_has2FatJet_B", fatJetColl[1].tau1, allWt);
+	AnaUtil::fillHist1D ("fj2_tau2_has2FatJet_B", fatJetColl[1].tau2, allWt);
+	AnaUtil::fillHist1D ("fj2_tau3_has2FatJet_B", fatJetColl[1].tau3, allWt);
+	AnaUtil::fillHist1D ("fj2_tau3ovtau2_has2FatJet_B", fatJetColl[1].tau3/fatJetColl[1].tau2, allWt);
+	AnaUtil::fillHist1D ("fj2_tau2ovtau1_has2FatJet_B", fatJetColl[1].tau2/fatJetColl[1].tau1, allWt);
+	AnaUtil::fillHist1D ("fj1_tau3ovtau2_has2FatJet_B", fatJetColl[0].tau3/fatJetColl[0].tau2, allWt);                                                                                                        
           unsigned int i1 = fatJetColl[0].subJetIdx1;
           unsigned int i2 = fatJetColl[0].subJetIdx2;
           unsigned int i3 = fatJetColl[1].subJetIdx1;
@@ -831,52 +926,75 @@ void MultiLeptonMVAna::eventLoop()
             if(fj.index == i1) {
               float subjet1_pt_1 = fj.pt;
               float subjet1_mass_1 = fj.mass;
-	      AnaUtil::fillHist1D ("s1fJet1Pt_2_B", subjet1_pt_1, allWt);
-	      AnaUtil::fillHist1D ("s1fJet1Mass_2_B", subjet1_mass_1, allWt);
+	      AnaUtil::fillHist1D ("s1fj1_pt_has2FatJet_B", subjet1_pt_1, allWt);
+	      AnaUtil::fillHist1D ("s1fj1_mass_has2FatJet_B", subjet1_mass_1, allWt);
               Fj1InvMass_2 = Fj1InvMass_2 + AnaUtil::getP4(fj);
 
             }
-	    if(fj.index == i2) {
+            if(fj.index == i2) {
               float subjet2_pt_1 = fj.pt;
               float subjet2_mass_1 = fj.mass;
- 	      AnaUtil::fillHist1D ("s2fJet1Pt_2_B", subjet2_pt_1, allWt);
-	      AnaUtil::fillHist1D ("s2fJet1Mass_2_B", subjet2_mass_1, allWt);
+	      AnaUtil::fillHist1D ("s2fj1_pt_has2FatJet_B", subjet2_pt_1, allWt);
+	      AnaUtil::fillHist1D ("s2fj1_mass_has2FatJet_B", subjet2_mass_1, allWt);
               Fj1InvMass_2 = Fj1InvMass_2 + AnaUtil::getP4(fj);
 
             }
+
+
 	    if(fj.index == i3) {
-	      float subjet1_pt_2 = fj.pt;
+              float subjet1_pt_2 = fj.pt;
               float subjet1_mass_2 = fj.mass;
-	      AnaUtil::fillHist1D ("s1fJet2Pt_2_B", subjet1_pt_2, allWt);
-	      AnaUtil::fillHist1D ("s1fJet2Mass_2_B", subjet1_mass_2, allWt);
+	      AnaUtil::fillHist1D ("s1fj2_pt_has2FatJet_B", subjet1_pt_2, allWt);
+	      AnaUtil::fillHist1D ("s1fj2_mass_has2FatJet_B", subjet1_mass_2, allWt);
               Fj2InvMass_2 = Fj2InvMass_2 + AnaUtil::getP4(fj);
             }
             if(fj.index == i4) {
               float subjet2_pt_2 = fj.pt;
               float subjet2_mass_2 = fj.mass;
-	      AnaUtil::fillHist1D ("s2fJet2Pt_2_B", subjet2_pt_2, allWt);
-	      AnaUtil::fillHist1D ("s2fJet2Mass_2_B", subjet2_mass_2, allWt);
+	      AnaUtil::fillHist1D ("s2fj2_pt_has2FatJet_B", subjet2_pt_2, allWt);
+	      AnaUtil::fillHist1D ("s2fj2_mass_has2FatJet_B", subjet2_mass_2, allWt);
               Fj2InvMass_2 = Fj2InvMass_2 + AnaUtil::getP4(fj);
             }
-	  }
+          }
+
+	  AnaUtil::fillHist1D ("fj2InvM_has2FatJet_B", Fj2InvMass_2.M(), allWt);
+	  AnaUtil::fillHist1D ("fj1InvM_has2FatJet_B", Fj1InvMass_2.M(), allWt);
+	  //AnaUtil::fillHist1D ("fj2InvM_has2FatJet_B", AnaUtil::getP4(fatJetColl[0]).M(), allWt);
+	  //AnaUtil::fillHist1D ("fj1InvM_has2FatJet_B", AnaUtil::getP4(fatJetColl[1]).M(), allWt);
          
-	  AnaUtil::fillHist1D ("fj2InvM_2_B", Fj2InvMass_2.M(), allWt);
-	  AnaUtil::fillHist1D ("fj1InvM_2_B", Fj1InvMass_2.M(), allWt);
-	  AnaUtil::fillHist1D ("nslimjet_2_B", jetColl.size(), allWt);
-          if(jetColl.size()==1) {
-	    AnaUtil::fillHist1D ("jet_1_pt_1_2_B", jetColl[0].pt, allWt);
-          }
+	  AnaUtil::fillHist1D("nj_ak8clean_has2FatJet_B", jetColl_ak8clean.size(), allWt);
 
 
-          if(jetColl.size() > 1) {
-	    AnaUtil::fillHist1D ("jet_1_pt_>1_2_B", jetColl[0].pt, allWt);
-	    AnaUtil::fillHist1D ("jet_2_pt_>1_2_B",jetColl[1].pt,allWt);
-	    AnaUtil::fillHist1D ("jet1jet2dR_>1_2_B", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])),allWt);
 
-          }
-	}
-	// }
-      AnaUtil::fillHist1D ("evYield_nfatjets", 1, allWt);
+      if(jetColl_ak8clean.size()>=1) {
+	AnaUtil::fillHist1D ("j1_ak8cleanfj1_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[0]).DeltaR(AnaUtil::getP4(fatJetColl[0])),allWt);
+	AnaUtil::fillHist1D ("j1_ak8cleanfj2_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[0]).DeltaR(AnaUtil::getP4(fatJetColl[1])),allWt);
+	AnaUtil::fillHist1D ("j1_ak8clean_pt_has2FatJet_B", jetColl_ak8clean[0].pt, allWt);
+
+      }
+      if(jetColl_ak8clean.size()>=2) {
+	AnaUtil::fillHist1D ("j2_ak8cleanfj1_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[1]).DeltaR(AnaUtil::getP4(fatJetColl[0])),allWt);
+	AnaUtil::fillHist1D ("j2_ak8cleanfj2_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[1]).DeltaR(AnaUtil::getP4(fatJetColl[1])),allWt);
+	AnaUtil::fillHist1D ("j2_ak8clean_pt_has2FatJet_B",jetColl_ak8clean[1].pt,allWt);
+	AnaUtil::fillHist1D ("j1j2_ak8clean_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[0]).DeltaR(AnaUtil::getP4(jetColl_ak8clean[1])),allWt);
+      
+      }
+      if(jetColl_ak8clean.size()>=3) {
+	AnaUtil::fillHist1D ("j3_ak8cleanfj1_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[2]).DeltaR(AnaUtil::getP4(fatJetColl[0])),allWt);
+	AnaUtil::fillHist1D ("j3_ak8cleanfj2_dR_has2FatJet_B", AnaUtil::getP4(jetColl_ak8clean[2]).DeltaR(AnaUtil::getP4(fatJetColl[1])),allWt);
+	AnaUtil::fillHist1D ("j3_ak8clean_pt_has2FatJet_B",jetColl_ak8clean[1].pt,allWt);
+
+      }
+
+      TLorentzVector fj1p4 = AnaUtil::getP4(fatJetColl[0]);
+      TLorentzVector fj2p4 = AnaUtil::getP4(fatJetColl[1]);
+      TLorentzVector fjp4 = fj1p4 + fj2p4;
+      //    AnaUtil::fillHist1D ("fjInvM_has2FatJet_usingsubjet_B", Fj1InvMass_2.M() + Fj2InvMass_2.M(), allWt);
+      //AnaUtil::fillHist1D ("fjInvM_has2FatJet_B", fjp4.M(), allWt);
+      //}
+      AnaUtil::fillHist1D ("evYield_nfatjets", 1, allWt);                                                                                                                                                
+    }
+
     }
 
     if (!isMC()) selEvLog() << evt.run << " " << evt.lumis << " " << evt.event << std::endl;

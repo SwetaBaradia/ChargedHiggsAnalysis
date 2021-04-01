@@ -207,9 +207,9 @@ bool AnaBase::init(){
 
   //MET
   if (branchFound("MET_pt")) Met_pt                                    = new TTreeReaderValue< float >(*treeReader_, "MET_pt");
-  if (branchFound("MET_pt_nom")) Met_nomPt                             = new TTreeReaderValue< float >(*treeReader_, "MET_pt_nom");
+  // if (branchFound("MET_pt_nom")) Met_nomPt                             = new TTreeReaderValue< float >(*treeReader_, "MET_pt_nom");
   if (branchFound("MET_phi")) Met_phi                                  = new TTreeReaderValue< float >(*treeReader_, "MET_phi");
-  if (branchFound("MET_phi_nom")) Met_nomPhi                           = new TTreeReaderValue< float >(*treeReader_, "MET_phi_nom");
+  //  if (branchFound("MET_phi_nom")) Met_nomPhi                           = new TTreeReaderValue< float >(*treeReader_, "MET_phi_nom");
   if (branchFound("MET_significance")) Met_significance                = new TTreeReaderValue< float >(*treeReader_, "MET_significance");
   if (branchFound("MET_sumEt")) Met_sumEt                              = new TTreeReaderValue< float >(*treeReader_, "MET_sumEt");
 
@@ -296,9 +296,9 @@ bool AnaBase::init(){
   if (branchFound("Tau_idAntiEle")) Tau_idAntiEle                      = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idAntiEle");
   if (branchFound("Tau_idAntiMu")) Tau_idAntiMu                        = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idAntiMu");
   if (branchFound("Tau_idMVAoldDM")) Tau_idMVAoldDM                    = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idMVAoldDM");
-  if (branchFound("Tau_idDeepTau2017v2VSjet")) Tau_idDeepTau2017v2VSjet= new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idDeepTau2017v2VSjet");
-  if (branchFound("Tau_idDeepTau2017v2VSjet")) Tau_idDeepTau2017v2VSmu = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idDeepTau2017v2VSmu");
-  if (branchFound("Tau_idDeepTau2017v2VSjet")) Tau_idDeepTau2017v2VSe  = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idDeepTau2017v2VSe");
+  if (branchFound("Tau_idDeepTau2017v2p1VSjet")) Tau_idDeepTau2017v2p1VSjet= new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idDeepTau2017v2p1VSjet");
+  if (branchFound("Tau_idDeepTau2017v2p1VSjet")) Tau_idDeepTau2017v2p1VSmu = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idDeepTau2017v2p1VSmu");
+  if (branchFound("Tau_idDeepTau2017v2p1VSjet")) Tau_idDeepTau2017v2p1VSe  = new TTreeReaderArray< unsigned char >(*treeReader_, "Tau_idDeepTau2017v2p1VSe");
 
   if (isMC_){
     //LHE

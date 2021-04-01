@@ -346,9 +346,9 @@ private:
 
   //MET
   TTreeReaderValue< float >* Met_pt;
-  TTreeReaderValue< float >* Met_nomPt;
+  //  TTreeReaderValue< float >* Met_nomPt;
   TTreeReaderValue< float >* Met_phi;
-  TTreeReaderValue< float >* Met_nomPhi;
+  //TTreeReaderValue< float >* Met_nomPhi;
   TTreeReaderValue< float >* Met_significance;
   TTreeReaderValue< float >* Met_sumEt;
 
@@ -412,9 +412,9 @@ private:
   TTreeReaderArray< unsigned char >* Tau_idAntiMu;//Anti-muon discriminator V3: : bitmask 1 = Loose, 2 = Tight
   TTreeReaderArray< unsigned char >* Tau_idMVAoldDM;//IsolationMVArun2v1DBoldDMwLT ID working point (2015): 
                                                     //bitmask 1 = VLoose, 2 = Loose, 4 = Medium, 8 = Tight, 16 = VTight, 32 = VVTight
-  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2VSjet;
-  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2VSe;
-  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2VSmu;
+  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2p1VSjet;
+  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2p1VSe;
+  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2p1VSmu;
 
 
 
