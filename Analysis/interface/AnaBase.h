@@ -107,13 +107,12 @@ public:
   bool branchFound(const std::string& b);
   int getEntries() const;
   //  bool readPileUpHist(bool verbose=false);
-  //  double wtPileUp(float nPU, bool verbose=false) const;
   void clearEvent();
   void enableBranches();
   int getEntry(int lflag) const;
 
   std::unique_ptr<TFile>& histf() {return histf_;}
-  std::unique_ptr<TFile>& fakehistf() {return fakehistf_;}
+  //std::unique_ptr<TFile>& fakehistf() {return fakehistf_;}
   TTreeReader* treeReader() {return treeReader_;}
   TTreeReader* treeReaderRun() {return treeReaderRun_;}
   TChain* chain() {return chain_;}
@@ -141,6 +140,9 @@ public:
   bool useTrueNInt() const {return useTrueNInt_;}
   int getEra() const {return era_;}
   std::string getDatasetName() {return dataset_;}
+  bool openScaleFactorRootFiles();
+  double getIdSF(std::string IdType, float pt, float eta, std::string Flav) const;
+  double getIsoSF(std::string IsoType, float pt, float eta, std::string Flav) const;
 
   const std::map<std::string, double>& lumiWtMap() const {return AnaUtil::cutMap(hmap_, "lumiWtList");}
   const std::map<std::string, double>& vtxCutMap() const {return AnaUtil::cutMap(hmap_, "vtxCutList");}
@@ -171,7 +173,7 @@ public:
 private:
   //  std::unique_ptr<TChain> chain_;      // chain contains a list of root files containing the same tree
   std::unique_ptr<TFile> histf_;       // The output file with histograms
-  std::unique_ptr<TFile> fakehistf_;       // The output file with histograms
+  //std::unique_ptr<TFile> fakehistf_;       // The output file with histograms
   TChain* chain_; 
   TChain* chainRun_;  
   std::vector<std::string> brList_;
@@ -211,7 +213,7 @@ private:
   std::string evtWtSum_;
   std::string dataset_ {"bla"};
   std::string histFile_ {"default.root"};
-  std::string fakehistFile_ {"fakedefault.root"};
+  //std::string fakehistFile_ {"fakedefault.root"};
   std::string logFile_ {"default.out"};
   std::string evFile_ {"events.out"};
   std::string selEvFile_ {"selected_events.out"};
@@ -226,6 +228,25 @@ private:
 
   TTreeReader* treeReader_;   //!pointer to the analyzed TTree::Events 
   TTreeReader* treeReaderRun_;   //!pointer to the analyzed TTree::Runs 
+  // SF related
+  std::string muonIdSFRootFile_ {"default.root"};
+  std::string looseMuonIdSFhistName_ {"hist"};
+  TH2D* looseMuonIdSFhist_ {nullptr};
+  std::string medMuonIdSFhistName_ {"hist"};
+  TH2D* medMuonIdSFhist_ {nullptr};
+  std::string tightMuonIdSFhistName_ {"hist"};
+  TH2D* tightMuonIdSFhist_ {nullptr};
+
+  std::string electronLooseIdSFRootFile_ {"default.root"};
+  std::string looseEleIdSFhistName_ {"hist"};
+  TH2F* looseEleIdSFhist_ {nullptr};
+  std::string electronTightIdSFRootFile_ {"default.root"};
+  std::string tightEleIdSFhistName_ {"hist"};
+  TH2F* tightEleIdSFhist_ {nullptr};
+
+  std::string muonTightIsoSFRootFile_ {"default.root"};
+  std::string tightMuIsoSFhistName_ {"hist"};
+  TH2D* tightMuIsoSFhist_ {nullptr};
 
  public:
   // Required Branches
@@ -306,6 +327,7 @@ private:
   TTreeReaderArray< float >* Electron_pfRelIso03_chg;
   TTreeReaderArray< bool >* Electron_mvaFall17V2Iso_WP80;
   TTreeReaderArray< bool >* Electron_mvaFall17V2Iso_WP90;
+  TTreeReaderArray< bool >* Electron_mvaFall17V1Iso_WP90;
   TTreeReaderArray< bool >* Electron_mvaFall17V2noIso_WP80;
   TTreeReaderArray< bool >* Electron_mvaFall17V2noIso_WP90;
   TTreeReaderArray< int >* Electron_genPartIdx;
@@ -313,9 +335,10 @@ private:
   TTreeReaderArray< float >* Electron_dxy;
   TTreeReaderArray< float >* Electron_dz;
   TTreeReaderArray< bool >* Electron_mvaFall17V2noIso_WPL;
+  TTreeReaderArray< bool >* Electron_mvaFall17V1noIso_WPL;
   TTreeReaderArray< unsigned char >*Electron_lostHits;
   TTreeReaderArray< bool >*Electron_convVeto;
-
+  TTreeReaderArray< float >*Electron_deltaEtaSC;
 
   // Jet
   // https://github.com/cms-nanoAOD/cmssw/blob/master-cmsswmaster/PhysicsTools/NanoAOD/python/jets_cff.py
@@ -346,9 +369,9 @@ private:
 
   //MET
   TTreeReaderValue< float >* Met_pt;
-  //  TTreeReaderValue< float >* Met_nomPt;
+  TTreeReaderValue< float >* Met_nomPt;
   TTreeReaderValue< float >* Met_phi;
-  //TTreeReaderValue< float >* Met_nomPhi;
+  TTreeReaderValue< float >* Met_nomPhi;
   TTreeReaderValue< float >* Met_significance;
   TTreeReaderValue< float >* Met_sumEt;
 
@@ -412,6 +435,9 @@ private:
   TTreeReaderArray< unsigned char >* Tau_idAntiMu;//Anti-muon discriminator V3: : bitmask 1 = Loose, 2 = Tight
   TTreeReaderArray< unsigned char >* Tau_idMVAoldDM;//IsolationMVArun2v1DBoldDMwLT ID working point (2015): 
                                                     //bitmask 1 = VLoose, 2 = Loose, 4 = Medium, 8 = Tight, 16 = VTight, 32 = VVTight
+  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2VSjet;
+  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2VSe;
+  TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2VSmu;
   TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2p1VSjet;
   TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2p1VSe;
   TTreeReaderArray< unsigned char >* Tau_idDeepTau2017v2p1VSmu;

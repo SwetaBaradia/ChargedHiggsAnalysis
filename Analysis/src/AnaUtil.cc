@@ -139,13 +139,44 @@ namespace AnaUtil {
   // Root object pool whenever necessary. This is the closest one can go to 
   // hbook and ID based histogramming
   // -------------------------------------------------------------------------
-  TH1* getHist1D(const char* hname) {
+  TH1* getHist1D(const char* hname, int nbins, float xlow, float xhigh, const char* region, const char* channel) {
+    std::string hname_ = std::string(hname)+"_"+std::string(region)+"_"+std::string(channel);
+    TObject *obj = gDirectory->GetList()->FindObject(hname_.c_str()); 
+    if (obj == nullptr) {
+      TH1D *obj = new TH1D(hname_.c_str(), "", nbins, xlow, xhigh);
+      return obj;
+    }
+    TH1* h = nullptr;
+    if (obj->InheritsFrom("TH1D"))
+      h = dynamic_cast<TH1D*>(obj);
+    else if (obj->InheritsFrom("TH1C"))
+      h = dynamic_cast<TH1C*>(obj);
+    else if (obj->InheritsFrom("TH1K"))
+      h = dynamic_cast<TH1K*>(obj);
+    else if (obj->InheritsFrom("TH1S"))
+      h = dynamic_cast<TH1S*>(obj);
+    else if (obj->InheritsFrom("TH1I"))
+      h = dynamic_cast<TH1I*>(obj);
+    else
+      h = dynamic_cast<TH1F*>(obj);
+    
+    if (h == nullptr) {
+      cerr << "**** getHist1D: <" << hname 
+  	 << "> may not be a 1D Histogram! (" 
+  	 << __FILE__ << ":" << __LINE__ << ")" 
+  	 << endl;
+    }
+    return h;
+  }
+  TH1* getHist1D(const string& hname, int nbins, float xlow, float xhigh, const string& region, const string& channel) {
+    return getHist1D(hname.c_str(), nbins, xlow, xhigh, region.c_str(), channel.c_str());
+  }
+
+
+
+  TH1* getHist1DBasic(const char* hname) {
     TObject *obj = gDirectory->GetList()->FindObject(hname); 
     if (obj == nullptr) {
-      /*      cerr << "**** getHist1D: Histogram for <" << hname 
-	   << "> not found! (" 
-	   << __FILE__ << ":" << __LINE__ << ")" 
-	   << endl;*/
       return nullptr;
     }
     TH1* h = nullptr;
@@ -170,9 +201,10 @@ namespace AnaUtil {
     }
     return h;
   }
-  TH1* getHist1D(const string& hname) {
-    return getHist1D(hname.c_str());
+  TH1* getHist1DBasic(const string& hname) {
+    return getHist1DBasic(hname.c_str());
   }
+
   
   // ---------------------------------------------
   // Convenience routine for filling 2D histograms
@@ -281,7 +313,7 @@ namespace AnaUtil {
 		      std::ostream& os)
   {
     os << ">>> " << header << " Efficiency" << endl;
-    TH1 *h = AnaUtil::getHist1D(hname);
+    TH1 *h = AnaUtil::getHist1DBasic(hname);
     if (h != nullptr) {
       os << setw(64) << "CutFlow"
 	 << setw(13) << tag
@@ -308,8 +340,32 @@ namespace AnaUtil {
       }
     }
   }
+  void showYield(const string& hname,
+		 const std::vector<std::string>& slist,
+		 const string& header,
+		 const string& tag,
+		 std::ostream& os)
+  {
+    os << ">>> " << header << " Yield " << endl;
+    TH1 *h = AnaUtil::getHist1DBasic(hname);
+    if (h != nullptr) {
+      os << setw(64) << "Channel"
+	 << setw(24) << tag
+	 << endl;
+      os.precision(10);
+      os << setw(90) <<	"---------------------------------\n";
+      int nbins = h->GetNbinsX();
+      for (int i = 1; i <= nbins; ++i) {
+	double conti = static_cast<double>(h->GetBinContent(i));
+	os << setw(64) << slist[i-1]
+	   << std::setprecision(5)
+	   << setw(24) << conti
+	   << endl;
+      }
+    }
+  }
   void scaleHistogram(const string& hname, double fac) {
-    TH1 *h = AnaUtil::getHist1D(hname);
+    TH1 *h = AnaUtil::getHist1DBasic(hname);
     if (h != nullptr) {
       //#if 0
       int nbins = h->GetNbinsX();
