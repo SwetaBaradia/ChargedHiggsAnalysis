@@ -1,0 +1,7 @@
+executable   = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit/Signal_PPAP_v1_condorJobs/Signal_PPAP_v1_0.sh
+arguments    = $(ClusterId)$(ProcId)
+output       = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit/Signal_PPAP_v1_condorJobs/output/Signal_PPAP_v1_0.$(ClusterId).$(ProcId).out
+error        = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit/Signal_PPAP_v1_condorJobs/error/Signal_PPAP_v1_0.$(ClusterId).$(ProcId).err
+log          = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit/Signal_PPAP_v1_condorJobs/log/Signal_PPAP_v1_0.$(ClusterId).log
++JobFlavour  = "tomorrow"
+queue

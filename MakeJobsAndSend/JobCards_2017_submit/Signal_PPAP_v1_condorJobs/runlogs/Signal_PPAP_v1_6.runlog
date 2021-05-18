@@ -1,0 +1,839 @@
+Linux b7s13n7111.cern.ch 3.10.0-1160.6.1.el7.x86_64 #1 SMP Tue Nov 17 13:59:11 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Muon
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::SubJet
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::FatJet
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Jet
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Tau
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::MET
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::LHEParticle
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::GenParticle
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Electron
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Event
+=== Start of Analysis === 
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_649_Skim.root to TChain 
+Warning in <TClass::Init>: no dictionary for class ROOT::TIOFeatures is available
+>>>Right now the chain contains :: 295 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_64_Skim.root to TChain 
+>>>Right now the chain contains :: 574 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_650_Skim.root to TChain 
+>>>Right now the chain contains :: 893 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_651_Skim.root to TChain 
+>>>Right now the chain contains :: 1193 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_652_Skim.root to TChain 
+>>>Right now the chain contains :: 1493 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_653_Skim.root to TChain 
+>>>Right now the chain contains :: 1788 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_654_Skim.root to TChain 
+>>>Right now the chain contains :: 2095 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_655_Skim.root to TChain 
+>>>Right now the chain contains :: 2396 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_656_Skim.root to TChain 
+>>>Right now the chain contains :: 2690 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_657_Skim.root to TChain 
+>>>Right now the chain contains :: 3000 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_658_Skim.root to TChain 
+>>>Right now the chain contains :: 3282 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_659_Skim.root to TChain 
+>>>Right now the chain contains :: 3579 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_65_Skim.root to TChain 
+>>>Right now the chain contains :: 3872 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_660_Skim.root to TChain 
+>>>Right now the chain contains :: 4173 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_661_Skim.root to TChain 
+>>>Right now the chain contains :: 4487 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_662_Skim.root to TChain 
+>>>Right now the chain contains :: 4787 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_663_Skim.root to TChain 
+>>>Right now the chain contains :: 5092 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_664_Skim.root to TChain 
+>>>Right now the chain contains :: 5394 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_665_Skim.root to TChain 
+>>>Right now the chain contains :: 5682 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_666_Skim.root to TChain 
+>>>Right now the chain contains :: 5972 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_667_Skim.root to TChain 
+>>>Right now the chain contains :: 6254 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_668_Skim.root to TChain 
+>>>Right now the chain contains :: 6562 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_669_Skim.root to TChain 
+>>>Right now the chain contains :: 6854 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_66_Skim.root to TChain 
+>>>Right now the chain contains :: 7136 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_670_Skim.root to TChain 
+>>>Right now the chain contains :: 7445 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_671_Skim.root to TChain 
+>>>Right now the chain contains :: 7728 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_672_Skim.root to TChain 
+>>>Right now the chain contains :: 8020 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_673_Skim.root to TChain 
+>>>Right now the chain contains :: 8332 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_674_Skim.root to TChain 
+>>>Right now the chain contains :: 8628 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_675_Skim.root to TChain 
+>>>Right now the chain contains :: 8922 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_676_Skim.root to TChain 
+>>>Right now the chain contains :: 9231 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_677_Skim.root to TChain 
+>>>Right now the chain contains :: 9524 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_678_Skim.root to TChain 
+>>>Right now the chain contains :: 9811 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_679_Skim.root to TChain 
+>>>Right now the chain contains :: 10115 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_67_Skim.root to TChain 
+>>>Right now the chain contains :: 10412 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_680_Skim.root to TChain 
+>>>Right now the chain contains :: 10718 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_681_Skim.root to TChain 
+>>>Right now the chain contains :: 11020 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_682_Skim.root to TChain 
+>>>Right now the chain contains :: 11333 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_683_Skim.root to TChain 
+>>>Right now the chain contains :: 11630 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_684_Skim.root to TChain 
+>>>Right now the chain contains :: 11935 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_685_Skim.root to TChain 
+>>>Right now the chain contains :: 12245 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_686_Skim.root to TChain 
+>>>Right now the chain contains :: 12542 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_687_Skim.root to TChain 
+>>>Right now the chain contains :: 12846 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_688_Skim.root to TChain 
+>>>Right now the chain contains :: 13161 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_689_Skim.root to TChain 
+>>>Right now the chain contains :: 13457 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_68_Skim.root to TChain 
+>>>Right now the chain contains :: 13757 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_690_Skim.root to TChain 
+>>>Right now the chain contains :: 14065 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_691_Skim.root to TChain 
+>>>Right now the chain contains :: 14386 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_692_Skim.root to TChain 
+>>>Right now the chain contains :: 14678 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_693_Skim.root to TChain 
+>>>Right now the chain contains :: 14994 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_694_Skim.root to TChain 
+>>>Right now the chain contains :: 15295 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_695_Skim.root to TChain 
+>>>Right now the chain contains :: 15575 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_696_Skim.root to TChain 
+>>>Right now the chain contains :: 15883 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_697_Skim.root to TChain 
+>>>Right now the chain contains :: 16181 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_698_Skim.root to TChain 
+>>>Right now the chain contains :: 16473 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_699_Skim.root to TChain 
+>>>Right now the chain contains :: 16773 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_69_Skim.root to TChain 
+>>>Right now the chain contains :: 17080 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_6_Skim.root to TChain 
+>>>Right now the chain contains :: 17379 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_700_Skim.root to TChain 
+>>>Right now the chain contains :: 17679 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_701_Skim.root to TChain 
+>>>Right now the chain contains :: 17990 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_702_Skim.root to TChain 
+>>>Right now the chain contains :: 18299 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_703_Skim.root to TChain 
+>>>Right now the chain contains :: 18585 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_704_Skim.root to TChain 
+>>>Right now the chain contains :: 18885 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_705_Skim.root to TChain 
+>>>Right now the chain contains :: 19192 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_706_Skim.root to TChain 
+>>>Right now the chain contains :: 19499 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_707_Skim.root to TChain 
+>>>Right now the chain contains :: 19771 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_708_Skim.root to TChain 
+>>>Right now the chain contains :: 20060 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_709_Skim.root to TChain 
+>>>Right now the chain contains :: 20345 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_70_Skim.root to TChain 
+>>>Right now the chain contains :: 20647 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_710_Skim.root to TChain 
+>>>Right now the chain contains :: 20957 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_711_Skim.root to TChain 
+>>>Right now the chain contains :: 21247 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_712_Skim.root to TChain 
+>>>Right now the chain contains :: 21543 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_713_Skim.root to TChain 
+>>>Right now the chain contains :: 21841 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_714_Skim.root to TChain 
+>>>Right now the chain contains :: 22140 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_715_Skim.root to TChain 
+>>>Right now the chain contains :: 22452 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_716_Skim.root to TChain 
+>>>Right now the chain contains :: 22748 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_717_Skim.root to TChain 
+>>>Right now the chain contains :: 23052 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_718_Skim.root to TChain 
+>>>Right now the chain contains :: 23360 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_719_Skim.root to TChain 
+>>>Right now the chain contains :: 23638 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_71_Skim.root to TChain 
+>>>Right now the chain contains :: 23948 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_720_Skim.root to TChain 
+>>>Right now the chain contains :: 24256 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_721_Skim.root to TChain 
+>>>Right now the chain contains :: 24565 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_722_Skim.root to TChain 
+>>>Right now the chain contains :: 24869 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_723_Skim.root to TChain 
+>>>Right now the chain contains :: 25170 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_724_Skim.root to TChain 
+>>>Right now the chain contains :: 25459 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_725_Skim.root to TChain 
+>>>Right now the chain contains :: 25756 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_726_Skim.root to TChain 
+>>>Right now the chain contains :: 26064 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_727_Skim.root to TChain 
+>>>Right now the chain contains :: 26365 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_728_Skim.root to TChain 
+>>>Right now the chain contains :: 26672 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_729_Skim.root to TChain 
+>>>Right now the chain contains :: 26951 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_72_Skim.root to TChain 
+>>>Right now the chain contains :: 27241 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_730_Skim.root to TChain 
+>>>Right now the chain contains :: 27544 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_731_Skim.root to TChain 
+>>>Right now the chain contains :: 27835 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_732_Skim.root to TChain 
+>>>Right now the chain contains :: 28144 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_733_Skim.root to TChain 
+>>>Right now the chain contains :: 28452 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_734_Skim.root to TChain 
+>>>Right now the chain contains :: 28757 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_735_Skim.root to TChain 
+>>>Right now the chain contains :: 29057 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_736_Skim.root to TChain 
+>>>Right now the chain contains :: 29356 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_737_Skim.root to TChain 
+>>>Right now the chain contains :: 29657 events
+>>> INFO. Adding input file /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_738_Skim.root to TChain 
+>>>Right now the chain contains :: 29945 events
+era 2017
+dataType mc#signal
+readGenInfo 0
+dumpGenInfo 0
+readTrigObject 0
+readPFObject 1
+useLumiWt 1
+dumpEventMax 10
+logOption 0
+maxEvent -1
+nFiles -1
+createMVATree 0
+readMVA 0
+MVAnetwork BDT_nT1500_D2_nC100_ns5
+MVAxmlFile TMVAClassification_BDT_nT1500_D2_nC100_ns5.weights.xml
+mvaInputFile ll4jmet_FTree.root
+evtWtSum genEventSumw
+lumiWtList xsec=0.00192928284139 intLumi=41529.152 nevents=100000
+histFile /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/Signal_PPAP_v1_6_hist.root
+fakehistFile /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/Signal_PPAP_v1_fakehist.root
+vtxCutList ndf=4 z=24 Rho=2
+muonCutList eta=2.4 pt=10. dxy=0.05 dz=0.1 SIP3D=4. pfReliso=0.15
+electronCutList pt=10. eta=2.5 dxyEB=0.05 dzEB=0.1 dxyEE=0.1 dzEE=0.2 SIP3D=4. pfReliso=0.20
+tauCutList eta=2.3 pt=20. dz=0.2 muVeto=0.5 eleVeto=0.5 isol=0.5
+jetCutList eta=2.5 pt=20. dRlep=0.4 btagFactor=0.8484
+fatJetCutList eta=2.4 pt=200. dRlep=0.4 btagFactor=0.8484
+photonCutList pt=2 eta=2.4 isol=1.8 dRmin=0.5 dRovEt2=0.012
+evselCutList hLepPtMin=20. ZMassLow=60. ZMassHigh=120.
+SingleMuon HLT_IsoMu24
+SingleMuon HLT_IsoMu27
+DoubleMuon HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8
+DoubleMuon HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8
+SingleElectron HLT_Ele35_WPTight_Gsf
+SingleElectron HLT_Ele32_WPTight_Gsf
+DoubleEG HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+MuonEG HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
+MuonEG HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
+MuonEG HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL
+MuonEG HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ
+muonIdSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/RunBCDEF_SF_ID.root
+looseMuonIdSFhistName NUM_LooseID_DEN_genTracks_pt_abseta
+medMuonIdSFhistName NUM_MediumID_DEN_genTracks_pt_abseta
+tightMuonIdSFhistName NUM_TightID_DEN_genTracks_pt_abseta
+electronLooseIdSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/egammaEffi_txt_EGM2D_MVA80noIso_UL17.root
+looseEleIdSFhistName EGamma_SF2D
+electronTightIdSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/egammaEffi_txt_EGM2D_MVA90iso_UL17.root
+tightEleIdSFhistName EGamma_SF2D
+muonTightIsoSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/RunBCDEF_SF_ISO.root
+tightMuIsoSFhistName NUM_TightRelIso_DEN_MediumID_pt_abseta
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_649_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_64_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_650_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_651_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_652_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_653_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_654_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_655_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_656_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_657_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_658_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_659_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_65_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_660_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_661_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_662_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_663_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_664_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_665_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_666_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_667_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_668_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_669_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_66_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_670_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_671_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_672_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_673_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_674_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_675_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_676_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_677_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_678_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_679_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_67_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_680_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_681_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_682_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_683_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_684_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_685_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_686_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_687_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_688_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_689_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_68_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_690_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_691_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_692_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_693_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_694_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_695_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_696_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_697_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_698_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_699_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_69_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_6_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_700_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_701_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_702_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_703_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_704_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_705_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_706_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_707_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_708_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_709_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_70_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_710_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_711_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_712_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_713_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_714_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_715_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_716_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_717_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_718_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_719_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_71_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_720_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_721_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_722_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_723_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_724_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_725_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_726_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_727_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_728_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_729_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_72_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_730_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_731_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_732_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_733_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_734_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_735_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_736_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_737_Skim.root
+inputFile /eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_738_Skim.root
+useEventList 1
+eventId 1 895751 20
+       datatype: mc
+    readGenInfo: 0
+        logFile: default.out
+      eventFile: events.out
+       histFile: /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/Signal_PPAP_v1_6_hist.root
+      selEvFile: selected_events.out
+      useLumiWt: true
+        usePUWt: false
+     puHistFile: ./reweightFunctionFall11.root
+    puHistogram: pileup
+    useTrueNInt: true
+     useTrigger: false
+      logOption: 0
+       maxEvent: -1
+>>> INFO. nFiles: 100, Files to analyse:
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_649_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_64_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_650_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_651_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_652_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_653_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_654_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_655_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_656_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_657_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_658_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_659_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_65_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_660_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_661_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_662_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_663_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_664_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_665_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_666_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_667_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_668_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_669_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_66_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_670_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_671_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_672_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_673_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_674_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_675_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_676_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_677_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_678_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_679_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_67_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_680_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_681_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_682_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_683_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_684_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_685_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_686_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_687_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_688_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_689_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_68_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_690_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_691_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_692_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_693_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_694_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_695_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_696_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_697_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_698_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_699_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_69_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_6_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_700_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_701_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_702_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_703_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_704_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_705_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_706_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_707_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_708_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_709_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_70_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_710_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_711_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_712_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_713_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_714_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_715_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_716_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_717_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_718_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_719_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_71_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_720_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_721_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_722_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_723_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_724_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_725_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_726_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_727_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_728_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_729_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_72_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_730_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_731_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_732_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_733_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_734_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_735_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_736_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_737_Skim.root
+/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/signal_step4_NanoAOD_738_Skim.root
+Event List:
+1-895751-20
+>>> electronCutList
+           SIP3D:    4.00
+           dxyEB:    0.05
+           dxyEE:    0.10
+            dzEB:    0.10
+            dzEE:    0.20
+             eta:    2.50
+        pfReliso:    0.20
+              pt:   10.00
+>>> evselCutList
+       ZMassHigh:  120.00
+        ZMassLow:   60.00
+       hLepPtMin:   20.00
+>>> fatJetCutList
+      btagFactor:    0.85
+           dRlep:    0.40
+             eta:    2.40
+              pt:  200.00
+>>> jetCutList
+      btagFactor:    0.85
+           dRlep:    0.40
+             eta:    2.50
+              pt:   20.00
+>>> lumiWtList
+         intLumi: 41529.15
+         nevents: 100000.00
+            xsec:    0.00
+>>> muonCutList
+           SIP3D:    4.00
+             dxy:    0.05
+              dz:    0.10
+             eta:    2.40
+        pfReliso:    0.15
+              pt:   10.00
+>>> photonCutList
+           dRmin:    0.50
+         dRovEt2:    0.01
+             eta:    2.40
+            isol:    1.80
+              pt:    2.00
+>>> tauCutList
+              dz:    0.20
+         eleVeto:    0.50
+             eta:    2.30
+            isol:    0.50
+          muVeto:    0.50
+              pt:   20.00
+>>> vtxCutList
+             Rho:    2.00
+             ndf:    4.00
+               z:   24.00
+
+==> Start event loop now with 100 file(s)
+ >>> nEvents = 29945
+Chain Name: Events	Chain Entries: 29945
+treeReader with TChain::Events
+Chain Name: Runs	Chain Entries: 100
+treeReader with TChain::Runs
+OBJ: TTreeReader	TTreeReader	A simple interface to read trees : 0 at: 0x276abf0
+OBJ: TTreeReader	TTreeReader	A simple interface to read trees : 0 at: 0x45acd00
+>>> SetBranchAddress: <genEventSumw> found!
+>>> SetBranchAddress: <genWeight> found!
+>>> SetBranchAddress: <puWeight> found!
+>>> SetBranchAddress: <puWeightUp> found!
+>>> SetBranchAddress: <puWeightDown> found!
+>>> SetBranchAddress: <btagWeight_CSVV2> found!
+>>> SetBranchAddress: <run> found!
+>>> SetBranchAddress: <event> found!
+>>> SetBranchAddress: <luminosityBlock> found!
+>>> SetBranchAddress: <PV_ndof> found!
+>>> SetBranchAddress: <PV_x> found!
+>>> SetBranchAddress: <PV_y> found!
+>>> SetBranchAddress: <PV_z> found!
+>>> SetBranchAddress: <PV_chi2> found!
+>>> SetBranchAddress: <PV_score> found!
+>>> SetBranchAddress: <PV_npvs> found!
+>>> SetBranchAddress: <PV_npvsGood> found!
+>>> SetBranchAddress: <nMuon> found!
+>>> SetBranchAddress: <Muon_pt> found!
+>>> SetBranchAddress: <Muon_corrected_pt> found!
+>>> SetBranchAddress: <Muon_eta> found!
+>>> SetBranchAddress: <Muon_phi> found!
+>>> SetBranchAddress: <Muon_charge> found!
+>>> SetBranchAddress: <Muon_mass> found!
+>>> SetBranchAddress: <Muon_sip3d> found!
+>>> SetBranchAddress: <Muon_jetIdx> found!
+>>> SetBranchAddress: <Muon_softId> found!
+>>> SetBranchAddress: <Muon_mediumId> found!
+>>> SetBranchAddress: <Muon_tightId> found!
+>>> SetBranchAddress: <Muon_highPtId> found!
+>>> SetBranchAddress: <Muon_mvaId> found!
+>>> SetBranchAddress: <Muon_pfRelIso03_all> found!
+>>> SetBranchAddress: <Muon_pfRelIso03_chg> found!
+>>> SetBranchAddress: <Muon_pfRelIso04_all> found!
+>>> SetBranchAddress: <Muon_genPartIdx> found!
+>>> SetBranchAddress: <Muon_genPartFlav> found!
+>>> SetBranchAddress: <Muon_isGlobal> found!
+>>> SetBranchAddress: <Muon_isPFcand> found!
+>>> SetBranchAddress: <Muon_isTracker> found!
+>>> SetBranchAddress: <Muon_dxy> found!
+>>> SetBranchAddress: <Muon_dxy> found!
+>>> SetBranchAddress: <Muon_tightCharge> found!
+>>> SetBranchAddress: <Muon_miniPFRelIso_all> found!
+>>> SetBranchAddress: <nElectron> found!
+>>> SetBranchAddress: <Electron_pt> found!
+>>> SetBranchAddress: <Electron_eta> found!
+>>> SetBranchAddress: <Electron_phi> found!
+>>> SetBranchAddress: <Electron_charge> found!
+>>> SetBranchAddress: <Electron_mass> found!
+>>> SetBranchAddress: <Electron_sip3d> found!
+>>> SetBranchAddress: <Electron_jetIdx> found!
+>>> SetBranchAddress: <Electron_photonIdx> found!
+>>> SetBranchAddress: <Electron_pfRelIso03_all> found!
+>>> SetBranchAddress: <Electron_pfRelIso03_chg> found!
+>>> SetBranchAddress: <Electron_mvaFall17V2Iso_WP80> found!
+>>> SetBranchAddress: <Electron_mvaFall17V2Iso_WP90> found!
+>>> SetBranchAddress: <Electron_mvaFall17V1Iso_WP90> found!
+>>> SetBranchAddress: <Electron_genPartIdx> found!
+>>> SetBranchAddress: <Electron_genPartFlav> found!
+>>> SetBranchAddress: <Electron_dxy> found!
+>>> SetBranchAddress: <Electron_dz> found!
+>>> SetBranchAddress: <Electron_mvaFall17V2noIso_WPL> found!
+>>> SetBranchAddress: <Electron_mvaFall17V1noIso_WPL> found!
+>>> SetBranchAddress: <Electron_lostHits> found!
+>>> SetBranchAddress: <Electron_convVeto> found!
+>>> SetBranchAddress: <Electron_deltaEtaSC> found!
+>>> SetBranchAddress: <MET_pt> found!
+>>> SetBranchAddress: <MET_pt_nom> found!
+>>> SetBranchAddress: <MET_phi> found!
+>>> SetBranchAddress: <MET_phi_nom> found!
+>>> SetBranchAddress: <MET_significance> found!
+>>> SetBranchAddress: <MET_sumEt> found!
+>>> SetBranchAddress: <nJet> found!
+>>> SetBranchAddress: <Jet_pt> found!
+>>> SetBranchAddress: <Jet_pt_nom> found!
+>>> SetBranchAddress: <Jet_eta> found!
+>>> SetBranchAddress: <Jet_phi> found!
+>>> SetBranchAddress: <Jet_nConstituents> found!
+>>> SetBranchAddress: <Jet_nMuons> found!
+>>> SetBranchAddress: <Jet_nElectrons> found!
+>>> SetBranchAddress: <Jet_puId> found!
+>>> SetBranchAddress: <Jet_muonIdx1> found!
+>>> SetBranchAddress: <Jet_muonIdx2> found!
+>>> SetBranchAddress: <Jet_electronIdx1> found!
+>>> SetBranchAddress: <Jet_electronIdx2> found!
+>>> SetBranchAddress: <Jet_jetId> found!
+>>> SetBranchAddress: <Jet_qgl> found!
+>>> SetBranchAddress: <Jet_neHEF> found!
+>>> SetBranchAddress: <Jet_neEmEF> found!
+>>> SetBranchAddress: <Jet_chHEF> found!
+>>> SetBranchAddress: <Jet_chEmEF> found!
+>>> SetBranchAddress: <Jet_area> found!
+>>> SetBranchAddress: <Jet_mass> found!
+>>> SetBranchAddress: <Jet_mass_nom> found!
+>>> SetBranchAddress: <Jet_btagCSVV2> found!
+>>> SetBranchAddress: <Jet_btagDeepFlavB> found!
+>>> SetBranchAddress: <nFatJet> found!
+>>> SetBranchAddress: <FatJet_pt> found!
+>>> SetBranchAddress: <FatJet_eta> found!
+>>> SetBranchAddress: <FatJet_phi> found!
+>>> SetBranchAddress: <FatJet_mass> found!
+>>> SetBranchAddress: <FatJet_msoftdrop> found!
+>>> SetBranchAddress: <FatJet_jetId> found!
+>>> SetBranchAddress: <FatJet_btagDeepB> found!
+>>> SetBranchAddress: <FatJet_btagCSVV2> found!
+>>> SetBranchAddress: <FatJet_n2b1> found!
+>>> SetBranchAddress: <FatJet_n3b1> found!
+>>> SetBranchAddress: <<<FatJet_hadronFlavour>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<FatJet_nBHadrons>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<FatJet_nCHadrons>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <FatJet_rawFactor> found!
+>>> SetBranchAddress: <FatJet_subJetIdx1> found!
+>>> SetBranchAddress: <FatJet_subJetIdx2> found!
+>>> SetBranchAddress: <FatJet_tau1> found!
+>>> SetBranchAddress: <FatJet_tau2> found!
+>>> SetBranchAddress: <FatJet_tau3> found!
+>>> SetBranchAddress: <FatJet_tau3> found!
+>>> SetBranchAddress: <FatJet_deepTag_WvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTag_ZvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTag_TvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTagMD_WvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTagMD_ZvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTagMD_TvsQCD> found!
+>>> SetBranchAddress: <<<FatJet_electronIdx3SJ>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<FatJet_muonIdx3SJ>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <nSubJet> found!
+>>> SetBranchAddress: <SubJet_pt> found!
+>>> SetBranchAddress: <SubJet_eta> found!
+>>> SetBranchAddress: <SubJet_phi> found!
+>>> SetBranchAddress: <SubJet_mass> found!
+>>> SetBranchAddress: <SubJet_btagDeepB> found!
+>>> SetBranchAddress: <SubJet_rawFactor> found!
+>>> SetBranchAddress: <nTau> found!
+>>> SetBranchAddress: <Tau_pt> found!
+>>> SetBranchAddress: <Tau_eta> found!
+>>> SetBranchAddress: <Tau_phi> found!
+>>> SetBranchAddress: <Tau_mass> found!
+>>> SetBranchAddress: <Tau_dxy> found!
+>>> SetBranchAddress: <Tau_dz> found!
+>>> SetBranchAddress: <Tau_charge> found!
+>>> SetBranchAddress: <Tau_decayMode> found!
+>>> SetBranchAddress: <Tau_idDecayMode> found!
+>>> SetBranchAddress: <Tau_idDecayModeNewDMs> found!
+>>> SetBranchAddress: <Tau_jetIdx> found!
+>>> SetBranchAddress: <Tau_idAntiEle> found!
+>>> SetBranchAddress: <Tau_idAntiMu> found!
+>>> SetBranchAddress: <Tau_idMVAoldDM> found!
+>>> SetBranchAddress: <Tau_idDeepTau2017v2VSjet> found!
+>>> SetBranchAddress: <Tau_idDeepTau2017v2VSmu> found!
+>>> SetBranchAddress: <Tau_idDeepTau2017v2VSe> found!
+>>> SetBranchAddress: <<<Tau_idDeepTau2017v2p1VSjet>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<Tau_idDeepTau2017v2p1VSmu>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<Tau_idDeepTau2017v2p1VSe>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <LHE_Njets> found!
+>>> SetBranchAddress: <HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8> found!
+>>> SetBranchAddress: <HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8> found!
+>>> SetBranchAddress: <HLT_IsoMu24> found!
+>>> SetBranchAddress: <HLT_IsoMu27> found!
+>>> SetBranchAddress: <HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL> found!
+>>> SetBranchAddress: <HLT_Ele35_WPTight_Gsf> found!
+>>> SetBranchAddress: <HLT_Ele32_WPTight_Gsf> found!
+>>> SetBranchAddress: <HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ> found!
+>>> SetBranchAddress: <HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ> found!
+>>> SetBranchAddress: <HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL> found!
+>>> SetBranchAddress: <HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ> found!
+TFile**		/afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/Signal_PPAP_v1_6_hist.root	
+ TFile*		/afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/Signal_PPAP_v1_6_hist.root	
+  TDirectoryFile*		ObjectSelection	ObjectSelection
+   OBJ: TH1D	muCutFlow	Muon CutFlow : 0 at: 0x47e9e60
+   OBJ: TH1D	eleCutFlow	Electron CutFlow : 0 at: 0x47eac80
+   OBJ: TH1D	jetCutFlow	Jet CutFlow : 0 at: 0x47eb1d0
+   OBJ: TH1D	tauCutFlow	Tau CutFlow : 0 at: 0x47eb730
+   OBJ: TH1D	fatJetCutFlow	FatJet CutFlow : 0 at: 0x47ebc70
+  OBJ: TH1D	evtCutFlow	Event CutFlow : 0 at: 0x47ec1d0
+  OBJ: TH1D	evYield_nfatJet_SR	 : 0 at: 0x47ec760
+  OBJ: TH1D	evYield_nfatJet_FR	 : 0 at: 0x47ecce0
+  OBJ: TH1D	evtCutFlowWt	Event CutFlow (Weighted) : 0 at: 0x47ed260
+  OBJ: TH1D	SR_yield	Yield in Signal Region : 0 at: 0x47ed820
+  OBJ: TH1D	SR_yieldWt	Yield in Signal Region Weighted : 0 at: 0x47edd90
+  OBJ: TH1D	FR_yield	Yield in Fake Extrapolated Region : 0 at: 0x47ee300
+  OBJ: TH1D	FR_yieldWt	Yield in Fake Extrapolated Region Weighted : 0 at: 0x47ee8c0
+  KEY: TDirectoryFile	ObjectSelection;1	ObjectSelection
+>>> Event range: [0, 29944]
+-- intLumi: 41529.15 xsec: 0.00 nevt: 41.69
+>>> lumiWt: 1.92 <<<<
+ <<<eventNo#        1
+ eventWt#     0.00
+ pileUpWt#     1.19
+ lumiWt#     1.92
+ bTagWt#     2.33
+ totalWt#     0.00 >>> 
+Event : 1
+fel :0	fmu :2	tel :0	tmu :2	lep1Flv :1	lep2Flv :1	leadIsTightMuon :true	leadIsTightEle :false
+isSR :true	isFR :false	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :true	isFR_EleEle :false	isFR_EleMu :false	isFR_MuMu :false
+MC_weight : 0.0009861514	Lumi_weight : 0.0018951040
+Event : 2
+fel :1	fmu :1	tel :1	tmu :1	lep1Flv :2	lep2Flv :1	leadIsTightMuon :false	leadIsTightEle :true
+isSR :true	isFR :false	isSR_EleEle :false	isSR_EleMu :true	isSR_MuMu :false	isFR_EleEle :false	isFR_EleMu :false	isFR_MuMu :false
+MC_weight : 0.0010056804	Lumi_weight : 0.0019326333
+Event : 3
+fel :0	fmu :2	tel :0	tmu :2	lep1Flv :1	lep2Flv :1	leadIsTightMuon :true	leadIsTightEle :false
+isSR :true	isFR :false	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :true	isFR_EleEle :false	isFR_EleMu :false	isFR_MuMu :false
+MC_weight : 0.0010590005	Lumi_weight : 0.0020350994
+Event : 5
+fel :0	fmu :2	tel :0	tmu :2	lep1Flv :1	lep2Flv :1	leadIsTightMuon :true	leadIsTightEle :false
+isSR :true	isFR :false	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :true	isFR_EleEle :false	isFR_EleMu :false	isFR_MuMu :false
+MC_weight : 0.0010557502	Lumi_weight : 0.0020288532
+Event : 6
+fel :0	fmu :2	tel :0	tmu :2	lep1Flv :1	lep2Flv :1	leadIsTightMuon :true	leadIsTightEle :false
+isSR :true	isFR :false	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :true	isFR_EleEle :false	isFR_EleMu :false	isFR_MuMu :false
+MC_weight : 0.0010359113	Lumi_weight : 0.0019907284
+>>> Muon Selection Efficiency
+                                                         CutFlow        Muons    AbsEff AbsEffErr    RelEff RelEffErr
+                                                       nRawMuons     43376.00   1.00000   0.00000   1.00000   0.00000
+                                                     preSel cuts     32592.00   0.75138   0.00208   0.75138   0.00208
+                                                           pT>10     29863.00   0.68847   0.00222   0.91627   0.00153
+                                                   pass MediumId     28747.00   0.66274   0.00227   0.96263   0.00110
+                                                pfRelIso <= 0.15     24756.00   0.57073   0.00238   0.86117   0.00204
+>>> Electron Selection Efficiency
+                                                         CutFlow    Electrons    AbsEff AbsEffErr    RelEff RelEffErr
+                                                   nRawElectrons     45447.00   1.00000   0.00000   1.00000   0.00000
+                                                     preSel cuts     21353.00   0.46984   0.00234   0.46984   0.00234
+                                    cleaning against tight muons     21313.00   0.46896   0.00234   0.99813   0.00030
+                                       pT>10,ConvVeto,NoLostHits     19406.00   0.42700   0.00232   0.91052   0.00196
+                                        pass mvaFall17V2Iso_WP90     16864.00   0.37107   0.00227   0.86901   0.00242
+>>> Jet Selection Efficiency
+                                                         CutFlow         Jets    AbsEff AbsEffErr    RelEff RelEffErr
+                                                        nRawJets    267924.00   1.00000   0.00000   1.00000   0.00000
+                                                     tight JetId    258523.00   0.96491   0.00036   0.96491   0.00036
+                                         jet_pt > 25 & eta < 2.5    176832.00   0.66001   0.00092   0.68401   0.00091
+                                                        puId cut    159115.00   0.59388   0.00095   0.89981   0.00071
+                                                 lepton cleaning    122493.00   0.45719   0.00096   0.76984   0.00106
+                                                      is bTagged     33388.00   0.12462   0.00064   0.27257   0.00127
+>>> Tau Selection Efficiency
+                                                         CutFlow         Taus    AbsEff AbsEffErr    RelEff RelEffErr
+                                                        nRawTaus     63874.00   1.00000   0.00000   1.00000   0.00000
+                                                      tauSelCuts        93.00   0.00146   0.00015   0.00146   0.00015
+                                                        lepClean        27.00   0.00042   0.00008   0.29032   0.04707
+>>> FatJet Selection Efficiency
+                                                         CutFlow      FatJets    AbsEff AbsEffErr    RelEff RelEffErr
+                                                     nRawFatJets     41445.00   1.00000   0.00000   1.00000   0.00000
+                                      after jetId, pT & eta cuts     31313.00   0.75553   0.00211   0.75553   0.00211
+                                                 hasValidSubJets     24597.00   0.59349   0.00241   0.78552   0.00232
+                                            30 < mSoftDrop < 210     19468.00   0.46973   0.00245   0.79148   0.00259
+                                                    tau21 < 0.75     19350.00   0.46688   0.00245   0.99394   0.00056
+                                                  leptonCleaning     16705.00   0.40306   0.00241   0.86331   0.00247
+                                                       isBTagged      2837.00   0.06845   0.00124   0.16983   0.00291
+>>> Event Selection [Unweighted] Efficiency
+                                                         CutFlow       Events    AbsEff AbsEffErr    RelEff RelEffErr
+                          Events processed                    :      29945.00   1.00000   0.00000   1.00000   0.00000
+                          has GoodPV                          :      29944.00   0.99997   0.00003   0.99997   0.00003
+                          at least 2 fakeable leptons         :      18733.00   0.62558   0.00280   0.62560   0.00280
+                          lep1pt > 25 and lep2pt > 20         :      16578.00   0.55361   0.00287   0.88496   0.00233
+                          pass HLT                            :      12999.00   0.43410   0.00286   0.78411   0.00320
+                          OS fakeable leptons                 :      12363.00   0.41286   0.00285   0.95107   0.00189
+                          low mass resonance veto             :      12035.00   0.40190   0.00283   0.97347   0.00145
+                          Z mass resonance veto               :      11835.00   0.39522   0.00283   0.98338   0.00117
+                          has max 2 tight leptons             :      11641.00   0.38875   0.00282   0.98361   0.00117
+                          tau veto                            :      11636.00   0.38858   0.00282   0.99957   0.00019
+                          met > 60                            :       9899.00   0.33057   0.00272   0.85072   0.00330
+                          is SR                               :       8443.00   0.28195   0.00260   0.85291   0.00356
+>>> Prompt Contribution in Signal Region [unweighted] Yield 
+                                                         Channel                   Yield
+                                                        ---------------------------------
+                                                          EleEle               357.00000
+                                                           EleMu              4430.00000
+                                                            MuMu              3656.00000
+
+evtWeightSum:         42
+      lumiWt:    1.92172
+>>> Prompt Contribution in Signal Region [Lumi weighted] Yield 
+                                                         Channel                   Yield
+                                                        ---------------------------------
+                                                          EleEle                 0.63742
+                                                           EleMu                 8.02561
+                                                            MuMu                 6.66854
+=== End of Analysis === 
+Realtime/CpuTime = 11.13067/4.76000

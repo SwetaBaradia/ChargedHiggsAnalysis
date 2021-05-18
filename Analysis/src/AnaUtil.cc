@@ -142,10 +142,9 @@ namespace AnaUtil {
   TH1* getHist1D(const char* hname, int nbins, float xlow, float xhigh, const char* region, const char* channel) {
     std::string hname_ = std::string(hname)+"_"+std::string(region)+"_"+std::string(channel);
     TObject *obj = gDirectory->GetList()->FindObject(hname_.c_str()); 
-    if (obj == nullptr) {
-      TH1D *obj = new TH1D(hname_.c_str(), "", nbins, xlow, xhigh);
-      return obj;
-    }
+    if (obj == nullptr) 
+    obj = new TH1D(hname_.c_str(), "", nbins, xlow, xhigh);
+      
     TH1* h = nullptr;
     if (obj->InheritsFrom("TH1D"))
       h = dynamic_cast<TH1D*>(obj);

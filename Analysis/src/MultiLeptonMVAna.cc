@@ -13,7 +13,6 @@
 #include <utility> 
 #include <typeinfo>
 #include <memory>
-
 #include "TROOT.h"
 #include "TSystem.h"
 #include "TChain.h"
@@ -104,12 +103,20 @@ void MultiLeptonMVAna::bookHistograms()
   histf()->cd();
 
   // book basic histograms to be filled at different stages
-  new TH1D("evtCutFlow", "Event CutFlow", 12, -0.5, 11.5);
+  new TH1D("evtCutFlow", "Event CutFlow", 14, -0.5, 13.5);
+  //  new TH1D("nAk4Jets", "", 10, -0.5, 9.5);
+  new TH1D("evYield_nfatJet_SR", "", 4, -0.5, 3.5);
+  new TH1D("evYield_nfatJet_FR", "", 4, -0.5, 3.5);
   if (isMC()) new TH1D("evtCutFlowWt", "Event CutFlow (Weighted)", 12, -0.5, 11.5);
   new TH1D("SR_yield", "Yield in Signal Region", 3, -0.5, 2.5);
   if (isMC()) new TH1D("SR_yieldWt", "Yield in Signal Region Weighted", 3, -0.5, 2.5);
   new TH1D("FR_yield", "Yield in Fake Extrapolated Region", 3, -0.5, 2.5);
   if (isMC()) new TH1D("FR_yieldWt", "Yield in Fake Extrapolated Region Weighted", 3, -0.5, 2.5);
+  new TH1D("eventWtSum", "Event Weight Sum", 1, -0.5, 1.5);
+  new TH1D("nLHEJet_0", "nJet when nLHEJet=0", 10, -0.5, 9.5);
+  new TH1D("nLHEJet_1", "nJet when nLHEJet=1", 10, -0.5, 9.5);
+  new TH1D("nLHEJet_2", "nJet when nLHEJet=2", 10, -0.5, 9.5);
+  new TH1D("nLHEJet_>2", "nJet when nLHEJet>2", 10, -0.5, 9.5);
 
   histf()->ls();
 }
@@ -154,8 +161,10 @@ void MultiLeptonMVAna::eventLoop()
       evtWeightSum_ += getGenSumW();
     }
     lumiFac = lumiWt(evtWeightSum_, true);
-    cout <<">>> lumiWt: "<<lumiFac<<" <<<<"<<endl;
+    //cout <<">>> lumiWt: "<<lumiFac<<" <<<<"<<endl;
+    cout <<setprecision(5)<<">>> evtWeightSum: "<<evtWeightSum_<<"\t"<<">>> lumiWt: "<<lumiFac<<" <<<<"<<endl;
   }
+  AnaUtil::fillHist1DBasic("eventWtSum", 0, evtWeightSum_);
   //--------------------------------------------------//
   //--------------------Event Loop--------------------//
   //--------------------------------------------------//
@@ -205,7 +214,7 @@ void MultiLeptonMVAna::eventLoop()
     float puWt   = 1.0; //for Data
     float evWt   = 1.0; //for Data
     float MCweight  = 1.0; //for Data
-
+    int nLHEJet;
     if (isMC()) {
       evWt = evt.genEvWt;
       //AnaUtil::fillHist1D ("evWeight", evWt, 1.0);
@@ -213,6 +222,8 @@ void MultiLeptonMVAna::eventLoop()
       //AnaUtil::fillHist1D("puWeight", puWt, 1.0);      
       MCweight = evWt * puWt;
       //AnaUtil::fillHist1D ("TotWt", MCweight, 1.0);
+      nLHEJet = evt.nLHEJets;
+      // std::cout<<evt.nLHEJets<<endl;
     }
     if (op.verbose && ev == 1) 
       cout << " <<<eventNo# " << setw(8) << ev <<"\n"
@@ -307,9 +318,23 @@ void MultiLeptonMVAna::eventLoop()
     const auto& fatJetColl         = getCleanFatJetList();
     const auto& fatbJetColl        = getBTaggedFatJetList();
     const auto& tauColl            = getLepCleanTauList();
+    const auto& subJetColl         = getSubJetList();
     const vhtm::MET& met           = getMETList().at(0);
-    const auto& jetColl_ak8Cleaned = getAk8CleanJetList();
 
+    const auto& jetColl_ak8Cleaned = getAk8CleanJetList();
+    // AnaUtil::fillHist1DBasic("nAk4Jets", jetColl.size(),MCweight*lumiFac);
+    if(nLHEJet == 0) {
+      AnaUtil::fillHist1DBasic("nLHEJet_0", jetColl.size(), 1);
+      if(jetColl.size() == 1)
+	std::cout<<"event weight_1"<<evWt<<endl;
+    }
+    if(nLHEJet == 1)
+      AnaUtil::fillHist1DBasic("nLHEJet_1", jetColl.size(), 1);
+    if(nLHEJet == 2)
+      AnaUtil::fillHist1DBasic("nLHEJet_2", jetColl.size(), 1);
+    if(nLHEJet >2)
+      AnaUtil::fillHist1DBasic("nLHEJet_>2", jetColl.size(), 1);
+    
     //P A C K I N G  L E P T O N S
     std::vector<LeptonCand>preselLepColl;
     if (preselMuColl.size() > 0) packLeptons <vhtm::Muon> (preselMuColl, preselLepColl);
@@ -426,25 +451,32 @@ void MultiLeptonMVAna::eventLoop()
     // -------------------------------------------------------------------------- //
     // ---------------------- !!! Weight Factory !!! ---------------------------- //
     // -------------------------------------------------------------------------- //
-    bool isSR_EleEle = (isSR && tel == 2) ? true : false;
+    /*    bool isSR_EleEle = (isSR && tel == 2) ? true : false;
     bool isSR_MuMu   = (isSR && tmu == 2) ? true : false;
     bool isSR_EleMu  = (isSR && tel == 1 && tmu == 1) ? true : false;
 
     bool isFR_EleEle = (isFR && fel == 2) ? true : false;
     bool isFR_MuMu   = (isFR && fmu == 2) ? true : false;
     bool isFR_EleMu  = (isFR && fel == 1 && fmu ==1) ? true : false;
-
+    */
+    bool isEleEle = (fel == 2) ? true : false;                                                                          
+    bool isMuMu   = (fmu == 2) ? true : false;                                                                          
+    bool isEleMu  = (fel == 1 && fmu ==1) ? true : false;
     // For Signal region
     if (isMC() && isSR) {
-      if (isSR_EleEle)     MCweight = MCweight 
+      //      if (isSR_EleEle)     MCweight = MCweight 
+      if (isEleEle)     MCweight = MCweight 
 			     * AnaBase::getIdSF("Tight", lep1.pt, lep1.SCeta, "Electron") 
 			     * AnaBase::getIdSF("Tight", lep2.pt, lep2.SCeta, "Electron");
-      else if (isSR_MuMu)  MCweight = MCweight 
+      //      else if (isSR_MuMu)  MCweight = MCweight 
+      else if (isMuMu)  MCweight = MCweight 
+
 			     * AnaBase::getIdSF("Medium", lep1.pt, lep1.eta, "Muon") 
 			     * AnaBase::getIdSF("Medium", lep2.pt, lep2.eta, "Muon")
 			     * AnaBase::getIsoSF("Tight", lep1.pt, lep1.eta, "Muon")
 			     * AnaBase::getIsoSF("Tight", lep2.pt, lep2.eta, "Muon");
-      else if (isSR_EleMu) {
+      else if (isEleMu) {
+	//      else if (isSR_EleMu) {
 	if (leadIsTightMuon) MCweight = MCweight 
 			       * AnaBase::getIdSF("Medium", lep1.pt, lep1.eta, "Muon")
 			       * AnaBase::getIsoSF("Tight", lep1.pt, lep1.eta, "Muon")
@@ -456,7 +488,8 @@ void MultiLeptonMVAna::eventLoop()
     }
     // For Fake extrapolated region
     else if (isMC() && isFR) {
-      if (isFR_EleEle) {
+      if (isEleEle) {
+	//      if (isFR_EleEle) {
 	if (tel == 0) MCweight = MCweight 
 			* 0.01 
 			* 0.01 
@@ -472,7 +505,8 @@ void MultiLeptonMVAna::eventLoop()
 	       * AnaBase::getIdSF("Loose", lep1.pt, lep1.SCeta, "Electron") 
 	       * AnaBase::getIdSF("Tight", lep2.pt, lep2.SCeta, "Electron"); 
       }
-      else if (isFR_MuMu) { 
+      else if (isMuMu) { 
+	//      else if (isFR_MuMu) { 
 	if (tmu == 0) MCweight = MCweight 
 			* 0.01 
 			* 0.01 
@@ -490,7 +524,8 @@ void MultiLeptonMVAna::eventLoop()
 	       * AnaBase::getIdSF("Medium", lep2.pt, lep2.eta, "Muon")
 	       * AnaBase::getIdSF("Tight", lep2.pt, lep2.eta, "Muon");
       }
-      else if (isFR_EleMu) {
+      else if (isEleMu) {
+	//      else if (isFR_EleMu) {
 	if (tel == 0 && tmu == 0) MCweight = (lep1.flavour == 1) ? 
 				    MCweight 
 				    * 0.01 
@@ -526,7 +561,7 @@ void MultiLeptonMVAna::eventLoop()
       }
     }
 
-    if (dumpIdx < 5) {
+    /* if (dumpIdx < 5) {
       dumpIdx++;
       std::cout<<"Event : "<<ev<<"\n";
       std::cout<<"fel :"<<fel<<"\t"
@@ -547,10 +582,10 @@ void MultiLeptonMVAna::eventLoop()
 	       <<"isFR_MuMu :"<<isFR_MuMu<<"\n";
       std::cout<<setprecision(10)<<"MC_weight : "<<MCweight<<"\t"<<"Lumi_weight : "<<MCweight*lumiFac<<"\n";
     }
-
+    */
     std::string channels[3] = {"EleEle", "EleMu", "MuMu"};
-    bool SR_flags[3]        = {isSR_EleEle, isSR_EleMu, isSR_MuMu};
-    bool FR_flags[3]        = {isFR_EleEle, isFR_EleMu, isFR_MuMu};
+    bool SR_flags[3]        = {(isSR && isEleEle), (isSR && isEleMu), (isSR && isMuMu)};
+    bool FR_flags[3]        = {(isFR && isEleEle), (isFR && isEleMu),(isFR && isMuMu)};
     // -------------------------------------------------------------------------- //
     // MET Distribution
     AnaUtil::fillHist1D("metPt", met.pt, 100, 0, 500, "SR", channels, MCweight, SR_flags);
@@ -564,27 +599,27 @@ void MultiLeptonMVAna::eventLoop()
     }
 
     // To get the yields for different regions
-    if (isSR_EleEle){
+    if (isSR && isEleEle){
       AnaUtil::fillHist1DBasic("SR_yield", 0);
       if (isMC()) AnaUtil::fillHist1DBasic("SR_yieldWt", 0, MCweight*lumiFac);
     }
-    else if (isSR_EleMu){
+    else if (isSR && isEleMu){
       AnaUtil::fillHist1DBasic("SR_yield", 1);
       if (isMC()) AnaUtil::fillHist1DBasic("SR_yieldWt", 1, MCweight*lumiFac);
     }
-    else if (isSR_MuMu){
+    else if (isSR && isMuMu){
       AnaUtil::fillHist1DBasic("SR_yield", 2);
       if (isMC()) AnaUtil::fillHist1DBasic("SR_yieldWt", 2, MCweight*lumiFac);
     }
-    else if (isFR_EleEle){
+    else if (isFR && isEleEle){
       AnaUtil::fillHist1DBasic("FR_yield", 0);
       if (isMC()) AnaUtil::fillHist1DBasic("FR_yieldWt", 0, MCweight*lumiFac);
     }
-    else if (isFR_EleMu){
+    else if (isFR && isEleMu){
       AnaUtil::fillHist1DBasic("FR_yield", 1);
       if (isMC()) AnaUtil::fillHist1DBasic("FR_yieldWt", 1, MCweight*lumiFac);
     }
-    else if (isFR_MuMu){
+    else if (isFR && isMuMu){
       AnaUtil::fillHist1DBasic("FR_yield", 2);
       if (isMC()) AnaUtil::fillHist1DBasic("FR_yieldWt", 2, MCweight*lumiFac);
     }
@@ -592,49 +627,379 @@ void MultiLeptonMVAna::eventLoop()
     
     bool isResolved_WZ = (jetColl.size() >= 3 && fatJetColl.size() == 0 && bJetColl.size()==0) ? true : false;
     bool isBoosted_WZ  = (fatJetColl.size() >= 1 && bJetColl.size()==0 && fatbJetColl.size()==0) ? true : false;
-  
+    
     if (isResolved_WZ) {
+      if(isSR)    {
+	AnaUtil::fillHist1DBasic("evtCutFlow", 12);
+	if (isMC()) AnaUtil::fillHist1DBasic("evtCutFlowWt", 12, MCweight*lumiFac);
+      }
       AnaUtil::fillHist1D("nAk4Jets_Resolved_WZ", jetColl.size(), 10, -0.5, 9.5, "SR", channels, MCweight, SR_flags);
       if (!isSignal()) AnaUtil::fillHist1D("nAk4Jets_Resolved_WZ", jetColl.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
-      AnaUtil::fillHist1D("ak4Jet1Pt_Resolved_WZ", jetColl[0].pt, 20, 0, 300, "SR", channels, MCweight, SR_flags);
-      if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1Pt_Resolved_WZ", jetColl[0].pt, 20, 0, 300, "FR", channels, MCweight, FR_flags);
-      AnaUtil::fillHist1D("ak4Jet2Pt_Resolved_WZ", jetColl[1].pt, 20, 0, 300, "SR", channels, MCweight, SR_flags);
-      if (!isSignal()) AnaUtil::fillHist1D("ak4Jet2Pt_Resolved_WZ", jetColl[1].pt, 20, 0, 300, "FR", channels, MCweight, FR_flags);
-      AnaUtil::fillHist1D("ak4Jet3Pt_Resolved_WZ", jetColl[2].pt, 20, 0, 300, "SR", channels, MCweight, SR_flags);
-      if (!isSignal()) AnaUtil::fillHist1D("ak4Jet3Pt_Resolved_WZ", jetColl[2].pt, 20, 0, 300, "FR", channels, MCweight, FR_flags);
+      //ak4Jet Pt
+      AnaUtil::fillHist1D("ak4Jet1Pt_Resolved_WZ", jetColl[0].pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);                                                                                         
+      if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1Pt_Resolved_WZ", jetColl[0].pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D("ak4Jet2Pt_Resolved_WZ", jetColl[1].pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D("ak4Jet2Pt_Resolved_WZ", jetColl[1].pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D("ak4Jet3Pt_Resolved_WZ", jetColl[2].pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D("ak4Jet3Pt_Resolved_WZ", jetColl[2].pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+      //ak4Jet dR                                                                                                                                                                        
+      AnaUtil::fillHist1D ("ak4Jet1ak4Jet2dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet1ak4Jet2dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[1])), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet2ak4Jet3dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(jetColl[2])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet2ak4Jet3dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(jetColl[2])), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet1ak4Jet3dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[2])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet1ak4Jet3dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[2])), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+      //lep Pt                                                                                                                                                                                   
+      AnaUtil::fillHist1D("lep1Pt_Resolved_WZ", lep1.pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D("lep1Pt_Resolved_WZ", lep1.pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D("lep2Pt_Resolved_WZ", lep2.pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D("lep2Pt_Resolved_WZ", lep2.pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+      //lep dR                                                                                                                                                                                            
+      AnaUtil::fillHist1D ("lep1lep2dR_Resolved_WZ", AnaUtil::getP4(lep1).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("lep1lep2dR_Resolved_WZ", AnaUtil::getP4(lep1).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+      //ak4Jet lep dR
+      AnaUtil::fillHist1D ("ak4Jet1lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet1lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet1lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet1lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet2lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet2lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet2lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet2lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet3lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet3lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("ak4Jet3lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet3lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+    
+    
       if (jetColl.size() > 3) {
-	AnaUtil::fillHist1D("ak4Jet4Pt_Resolved_WZ", jetColl[3].pt, 20, 0, 300, "SR", channels, MCweight, SR_flags);
-	if (!isSignal()) AnaUtil::fillHist1D("ak4Jet4Pt_Resolved_WZ", jetColl[3].pt, 20, 0, 300, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D("ak4Jet4Pt_Resolved_WZ", jetColl[3].pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D("ak4Jet4Pt_Resolved_WZ", jetColl[3].pt, 20, 0, 300, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("ak4Jet1ak4Jet4dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[3])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal())AnaUtil::fillHist1D ("ak4Jet1ak4Jet4dR_Resolved_WZ", AnaUtil::getP4(jetColl[0]).DeltaR(AnaUtil::getP4(jetColl[3])), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("ak4Jet2ak4Jet4dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(jetColl[3])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal())AnaUtil::fillHist1D ("ak4Jet2ak4Jet4dR_Resolved_WZ", AnaUtil::getP4(jetColl[1]).DeltaR(AnaUtil::getP4(jetColl[3])), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("ak4Jet3ak4Jet4dR_Resolved_WZ", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(jetColl[3])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal())AnaUtil::fillHist1D ("ak4Jet3ak4Jet4dR_Resolved_WZ", AnaUtil::getP4(jetColl[2]).DeltaR(AnaUtil::getP4(jetColl[3])), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+	
+    	AnaUtil::fillHist1D ("ak4Jet4lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[3]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet4lep1dR_Resolved_WZ", AnaUtil::getP4(jetColl[3]).DeltaR(AnaUtil::getP4(lep1)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("ak4Jet4lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[3]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("ak4Jet4lep2dR_Resolved_WZ", AnaUtil::getP4(jetColl[3]).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "FR",  channels, MCweight, FR_flags);
       }
-      // jet inv mass
-      float jetsInvM = (jetColl.size() > 3) ? (AnaUtil::getP4(jetColl[0]) + AnaUtil::getP4(jetColl[1]) + 
-					       AnaUtil::getP4(jetColl[2]) + AnaUtil::getP4(jetColl[3])).M()
-	: (AnaUtil::getP4(jetColl[0]) + AnaUtil::getP4(jetColl[1]) + AnaUtil::getP4(jetColl[2])).M();
-      AnaUtil::fillHist1D("jetsInvMass_Resolved_WZ", jetsInvM, 100, 0, 500, "SR", channels, MCweight, SR_flags);
-      if (!isSignal()) AnaUtil::fillHist1D("jetsInvMass_Resolved_WZ", jetsInvM, 100, 0, 500, "FR", channels, MCweight, FR_flags);
-    }
+    
+      
+      TLorentzVector metp4;
+      TLorentzVector jp4;
+      TLorentzVector hT_vector_all;
+      TLorentzVector hT_vector_lepmet;
+      double hT_scalar_all = 0.;
+      double hT_scalar_jet = 0.;
+      double hT_scalar_lepmet = 0.;
+      double jet_dR_min =10.00;
+      double check;
 
+      for(unsigned int i=0 ; i < jetColl.size() ; i++) {
+        jp4 = jp4 + AnaUtil::getP4( jetColl[i]);
+        hT_scalar_jet = hT_scalar_jet + jetColl[i].pt;
+        for(unsigned int j=0 ; j < jetColl.size() ; j++) {
+          if(i!=j) {
+            check = AnaUtil::getP4(jetColl[i]).DeltaR(AnaUtil::getP4(jetColl[j]));
+            if(check <= jet_dR_min)
+              jet_dR_min = check;
+          }
+        }
+      }
+    
+   
+      AnaUtil::fillHist1D ("ak4JetdR_minResolved_WZ", jet_dR_min, 50, 0, 5, "SR",  channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4JetdR_minResolved_WZ", jet_dR_min, 50, 0, 5, "FR",  channels, MCweight, FR_flags);
+      // jet inv mass                                                                                                                                                      
+      float jetsInvM = (jetColl.size() > 3) ? (AnaUtil::getP4(jetColl[0])+AnaUtil::getP4(jetColl[1])+AnaUtil::getP4(jetColl[2])+AnaUtil::getP4(jetColl[3])).M()
+        : (AnaUtil::getP4(jetColl[0])+AnaUtil::getP4(jetColl[1])+AnaUtil::getP4(jetColl[2])).M();
+      AnaUtil::fillHist1D("jetsInvMass_Resolved_WZ", jetsInvM, 200, -50., 950., "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D("jetsInvMass_Resolved_WZ", jetsInvM, 200, -50, 950, "FR", channels, MCweight, FR_flags);
+
+    
+      metp4.SetPtEtaPhiE(met.pt, 0.0, met.phi, met.pt);
+      hT_vector_lepmet = AnaUtil::getP4(lep1) + AnaUtil::getP4(lep2) + metp4;
+      hT_scalar_lepmet = hT_scalar_lepmet + lep1.pt + lep2.pt + met.pt;
+      hT_vector_all = jp4 + hT_vector_lepmet;
+      hT_scalar_all = hT_scalar_jet + hT_scalar_lepmet;
+      //hT vector
+      AnaUtil::fillHist1D ("ak4JethTvector_Resolved_WZ", jp4.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4JethTvector_Resolved_WZ", jp4.Pt(), 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("LepMethTvector_Resolved_WZ", hT_vector_lepmet.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal())AnaUtil::fillHist1D ("LepMethTvector_Resolved_WZ",hT_vector_lepmet.Pt() , 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("AllhTvector_Resolved_WZ", hT_vector_all.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal())AnaUtil::fillHist1D ("AllhTvector_Resolved_WZ",hT_vector_all.Pt() , 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      //hT scalar
+      AnaUtil::fillHist1D ("ak4JethTscalar_Resolved_WZ", hT_scalar_jet, 1000, 0, 5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4JethTscalar_Resolved_WZ", hT_scalar_jet, 1000, 0, 5000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("lepMethTscalar_Resolved_WZ", hT_scalar_lepmet, 1000, 0, 5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("lepMethTscalar_Resolved_WZ", hT_scalar_lepmet, 1000, 0, 5000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("allhTscalar_Resolved_WZ", hT_scalar_all, 1000, 0 ,5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("allhTscalar_Resolved_WZ", hT_scalar_all, 1000, 0 ,5000, "FR", channels, MCweight, FR_flags);
+
+      if(isSR)
+	AnaUtil::fillHist1DBasic("evYield_nfatJet_SR", 0);
+      else if(isFR && !isSignal())
+	AnaUtil::fillHist1DBasic("evYield_nfatJet_FR", 0);
+    }
     if (isBoosted_WZ) {
+      ///      AnaUtil::fillHist1D("check", tightLepColl.size(), 10, -0.5, 9.5, "SR", channels, MCweight, SR_flags);
+      if(isSR)    {
+	AnaUtil::fillHist1DBasic("evtCutFlow", 13);
+	if (isMC()) AnaUtil::fillHist1DBasic("evtCutFlowWt", 13, MCweight*lumiFac);
+      }
+
       AnaUtil::fillHist1D("nAk4Jets_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "SR", channels, MCweight, SR_flags);
       if (!isSignal()) AnaUtil::fillHist1D("nAk4Jets_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
-      if (jetColl_ak8Cleaned.size() >= 1){ 
-	AnaUtil::fillHist1D("ak4Jet1Pt_Boosted_WZ", jetColl_ak8Cleaned[0].pt, 50, 0, 1000, "SR", channels, MCweight, SR_flags);
-	if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1Pt_Boosted_WZ", jetColl_ak8Cleaned[0].pt, 50, 0, 1000, "FR", channels, MCweight, FR_flags);
-	if (jetColl_ak8Cleaned.size() >= 2){ 
-	  AnaUtil::fillHist1D("ak4Jet2Pt_Boosted_WZ", jetColl_ak8Cleaned[1].pt, 50, 0, 1000, "SR", channels, MCweight, SR_flags);
-	  if (!isSignal()) AnaUtil::fillHist1D("ak4Jet2Pt_Boosted_WZ", jetColl_ak8Cleaned[1].pt, 50, 0, 1000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D("nFatJets_Boosted_WZ", fatJetColl.size(), 10, -0.5, 9.5, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D("nFatJets_Boosted_WZ", fatJetColl.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
+     //lep Pt                                                                                                                                                                                            
+       AnaUtil::fillHist1D("lep1Pt_Boosted_WZ", lep1.pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+       if (!isSignal()) AnaUtil::fillHist1D("lep1Pt_Boosted_WZ", lep1.pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+       AnaUtil::fillHist1D("lep2Pt_Boosted_WZ", lep2.pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+       if (!isSignal()) AnaUtil::fillHist1D("lep2Pt_Boosted_WZ", lep2.pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+      //lep dR                                                                                                                                                                              
+      AnaUtil::fillHist1D ("lep1lep2dR_Boosted_WZ", AnaUtil::getP4(lep1).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("lep1lep2dR_Boosted_WZ", AnaUtil::getP4(lep1).DeltaR(AnaUtil::getP4(lep2)), 50, 0, 5, "FR", channels, MCweight, FR_flags);
+      //jet pt , dR with fj                                                                                                                                                                               
+      if (jetColl_ak8Cleaned.size() >= 1){
+	AnaUtil::fillHist1D("ak4Jet1Pt_Boosted_WZ", jetColl_ak8Cleaned[0].pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+	if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1Pt_Boosted_WZ", jetColl_ak8Cleaned[0].pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D("ak4Jet1fJet1dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[0]).DeltaR(AnaUtil::getP4(fatJetColl[0])), 50, 0, 5, "SR", channels, MCweight, SR_flags);
+	if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1fJet1dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[0]).DeltaR(AnaUtil::getP4(fatJetColl[0])), 50,0, 5, "FR", channels, MCweight, FR_flags);
+	if(fatJetColl.size()>=2) {
+	  AnaUtil::fillHist1D("ak4Jet1fJet2dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[0]).DeltaR(AnaUtil::getP4(fatJetColl[1])), 50,0, 5, "SR", channels, MCweight, SR_flags);
+	  if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1fJet2dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[0]).DeltaR(AnaUtil::getP4(fatJetColl[1])), 50,0, 5, "FR", channels, MCweight, FR_flags);
+	}
+	if (jetColl_ak8Cleaned.size() >= 2){
+	  AnaUtil::fillHist1D("ak4Jet2Pt_Boosted_WZ", jetColl_ak8Cleaned[1].pt, 200, 0, 1000, "SR", channels, MCweight, SR_flags);
+	  if (!isSignal())AnaUtil::fillHist1D("ak4Jet2Pt_Boosted_WZ", jetColl_ak8Cleaned[1].pt, 200, 0, 1000, "FR", channels, MCweight, FR_flags);
+	  AnaUtil::fillHist1D("ak4Jet2fJet1dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[1]).DeltaR(AnaUtil::getP4(fatJetColl[0])), 50,0, 5, "SR", channels, MCweight, SR_flags);
+	  if (!isSignal()) AnaUtil::fillHist1D("ak4Jet1fJet1dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[1]).DeltaR(AnaUtil::getP4(fatJetColl[0])), 50,0, 5, "FR", channels, MCweight, FR_flags);
+          if(fatJetColl.size()>=2) {
+	    AnaUtil::fillHist1D("ak4Jet2fJet2dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[1]).DeltaR(AnaUtil::getP4(fatJetColl[1])), 50,0, 5, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D("ak4Jet2fJet2dR_Boosted_WZ", AnaUtil::getP4(jetColl_ak8Cleaned[1]).DeltaR(AnaUtil::getP4(fatJetColl[1])), 50,0, 5, "FR", channels, MCweight, FR_flags);
+          }
 	}
       }
+      double hT_scalar_fjet = 0.;
+      double hT_scalar_jet = 0.;
+      double hT_scalar_lepmet = 0.;
+      double hT_scalar_all = 0.;
+      TLorentzVector fjp4;
+      TLorentzVector jp4;
+      TLorentzVector metp4;
+      TLorentzVector hT_vector_lepmet;
+      TLorentzVector hT_vector_all;
+      
+      for (auto& fj: fatJetColl) {
+	fjp4 = fjp4 + AnaUtil::getP4(fj);
+	hT_scalar_fjet = hT_scalar_fjet + fj.pt;
+      }
+      
+      for(auto& j: jetColl_ak8Cleaned) {
+	jp4 = jp4 + AnaUtil::getP4(j);
+	hT_scalar_jet = hT_scalar_jet + j.pt;
+      }
+      
+      metp4.SetPtEtaPhiE(met.pt, 0.0, met.phi, met.pt);
+      hT_vector_lepmet = hT_vector_lepmet + AnaUtil::getP4(lep1) + AnaUtil::getP4(lep2) + metp4;
+      hT_scalar_lepmet = hT_scalar_lepmet + lep1.pt + lep2.pt + met.pt;
+      
+      hT_vector_all = hT_vector_lepmet + jp4 + fjp4;
+      hT_scalar_all = hT_scalar_lepmet + hT_scalar_jet + hT_scalar_fjet;
+
+      //hT vector                                                                                                                                                                     
+      AnaUtil::fillHist1D ("ak4JethTvector_Boosted_WZ", jp4.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4JethTvector_Boosted_WZ", jp4.Pt(), 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("LepMethTvector_Boosted_WZ", hT_vector_lepmet.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal())AnaUtil::fillHist1D ("LepMethTvector_Boosted_WZ",hT_vector_lepmet.Pt() , 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("fatJethTvector_Boosted_WZ", fjp4.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal())AnaUtil::fillHist1D ("fatJethTvector_Boosted_WZ", fjp4.Pt() , 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("AllhTvector_Boosted_WZ", hT_vector_all.Pt(), 400, 0, 2000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal())AnaUtil::fillHist1D ("AllhTvector_Boosted_WZ",hT_vector_all.Pt() , 400, 0, 2000, "FR", channels, MCweight, FR_flags);
+      //hT scalar                                                                                                                                                                             
+      AnaUtil::fillHist1D ("ak4JethTscalar_Boosted_WZ", hT_scalar_jet, 1000, 0, 5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("ak4JethTscalar_Boosted_WZ", hT_scalar_jet, 1000, 0, 5000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("lepMethTscalar_Boosted_WZ", hT_scalar_lepmet, 1000, 0, 5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("lepMethTscalar_Boosted_WZ", hT_scalar_lepmet, 1000, 0, 5000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("fatJethTscalar_Boosted_WZ", hT_scalar_fjet, 1000, 0, 5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("fatJethTscalar_Boosted_WZ", hT_scalar_fjet, 1000, 0, 5000, "FR", channels, MCweight, FR_flags);
+      AnaUtil::fillHist1D ("allhTscalar_Boosted_WZ", hT_scalar_all, 1000, 0 ,5000, "SR", channels, MCweight, SR_flags);
+      if (!isSignal()) AnaUtil::fillHist1D ("allhTscalar_Boosted_WZ", hT_scalar_all, 1000, 0 ,5000, "FR", channels, MCweight, FR_flags);
+     
+
       if (fatJetColl.size() == 1) {
 	AnaUtil::fillHist1D("nAk4Jets_has1FatJet_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "SR", channels, MCweight, SR_flags);
-	if (!isSignal()) AnaUtil::fillHist1D("nAk4Jets_has1FatJet_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D("nAk4Jets_has1FatJet_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
+        //fjet 1                                                                                                                                                                                                                                            
+	AnaUtil::fillHist1D ("fatJetPt_has1FatJet_Boosted_WZ", fatJetColl[0].pt , 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetPt_has1FatJet_Boosted_WZ", fatJetColl[0].pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetMass_has1FatJet_Boosted_WZ",fatJetColl[0].mass, 500, 0, 500, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetMass_has1FatJet_Boosted_WZ",fatJetColl[0].mass, 500, 0, 500, "FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetMassSD_has1FatJet_Boosted_WZ", fatJetColl[0].softDropMass, 100, -50., 450., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetMassSD_has1FatJet_Boosted_WZ", fatJetColl[0].softDropMass, 100, -50., 450.,"FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetTau1_has1FatJet_Boosted_WZ", fatJetColl[0].tau1, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetTau1_has1FatJet_Boosted_WZ", fatJetColl[0].tau1, 100, 0, 1,"FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetTau2_has1FatJet_Boosted_WZ", fatJetColl[0].tau2, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetTau2_has1FatJet_Boosted_WZ", fatJetColl[0].tau2, 100, 0, 1, "FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetTau3_has1FatJet_Boosted_WZ", fatJetColl[0].tau3, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetTau3_has1FatJet_Boosted_WZ", fatJetColl[0].tau3, 100, 0, 1, "FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetTau3ovTau2_has1FatJet_Boosted_WZ", fatJetColl[0].tau3/fatJetColl[0].tau2, 100, -0.5, 1.5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetTau3ovTau2_has1FatJet_Boosted_WZ", fatJetColl[0].tau3/fatJetColl[0].tau2, 100, -0.5, 1.5, "FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("fatJetTau2ovTau1_has1FatJet_Boosted_WZ", fatJetColl[0].tau2/fatJetColl[0].tau1, 100, -0.5, 1.5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJetTau2ovTau1_has1FatJet_Boosted_WZ", fatJetColl[0].tau2/fatJetColl[0].tau1, 100, -0.5, 1.5, "FR", channels, MCweight, FR_flags);
+
+        unsigned int i1 = fatJetColl[0].subJetIdx1;
+        unsigned int i2 = fatJetColl[0].subJetIdx2;
+        TLorentzVector Fj1InvMass_1;
+        for (auto& fj: subJetColl) {
+          if(fj.index == i1) {
+	    AnaUtil::fillHist1D ("subJet1Pt_has1FatJet_Boosted_WZ", fj.pt, 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet1Pt_has1FatJet_Boosted_WZ", fj.pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	    AnaUtil::fillHist1D ("subJet1Mass_has1FatJet_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet1Mass_has1FatJet_Boosted_WZ", fj.mass,  100, -50.0, 450.0, "FR", channels, MCweight, FR_flags);
+
+            Fj1InvMass_1 = Fj1InvMass_1 + AnaUtil::getP4(fj);
+          }
+          else  if(fj.index == i2) {
+	    AnaUtil::fillHist1D ("subJet2Pt_has1FatJet_Boosted_WZ", fj.pt, 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet2Pt_has1FatJet_Boosted_WZ", fj.pt, 1000, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	    AnaUtil::fillHist1D ("subJet2Mass_has1FatJet_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet2Mass_has1FatJet_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "FR", channels, MCweight, FR_flags);
+
+            Fj1InvMass_1 = Fj1InvMass_1 + AnaUtil::getP4(fj);
+          }
+
+        }
+	AnaUtil::fillHist1D ("subJetsInvMass_has1FatJet_B", Fj1InvMass_1.M(), 200, -50., 950., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("subJetsInvMass_has1FatJet_B", Fj1InvMass_1.M(), 200, -50., 950., "FR", channels, MCweight, FR_flags);
+        if(isSR)
+	  AnaUtil::fillHist1DBasic("evYield_nfatJet_SR", 1);
+        else if(isFR && !isSignal())
+	  AnaUtil::fillHist1DBasic("evYield_nfatJet_FR", 1);
+
       }
+
+	 
       if (fatJetColl.size() >= 2) {
 	AnaUtil::fillHist1D("nAk4Jets_has2OrMoreFatJet_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "SR", channels, MCweight, SR_flags);
-	if (!isSignal()) AnaUtil::fillHist1D("nAk4Jets_has2OrMoreFatJet_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D("nAk4Jets_has2OrMoreFatJet_Boosted_WZ", jetColl_ak8Cleaned.size(), 10, -0.5, 9.5, "FR", channels, MCweight, FR_flags);
+        //fj 1                                                                                                                                                                                            
+	AnaUtil::fillHist1D ("fatJet1Pt_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].pt , 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Pt_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1Mass_has2OrMoreFatJet_Boosted_WZ",fatJetColl[0].mass, 500, 0, 500, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Mass_has2OrMoreFatJet_Boosted_WZ",fatJetColl[0].mass, 500, 0, 500, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1MassSD_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].softDropMass, 100, -50., 450., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1MassSD_ha2OrMoreFatJet_Boosted_WZ", fatJetColl[0].softDropMass, 100, -50., 450.,"FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1Tau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau1, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Tau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau1, 100, 0, 1,"FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1Tau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau2, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Tau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau2, 100, 0, 1, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1Tau3_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau3, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Tau3_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau3, 100, 0, 1, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1Tau3ovTau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau3/fatJetColl[0].tau2, 100, -0.5, 1.5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Tau3ovTau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau3/fatJetColl[0].tau2, 100, -0.5, 1.5, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet1Tau2ovTau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau2/fatJetColl[0].tau1, 100, -0.5, 1.5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet1Tau2ovTau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[0].tau2/fatJetColl[0].tau1, 100, -0.5, 1.5, "FR", channels, MCweight, FR_flags);
+
+        //fj 2                                                                                                                                                                                
+	AnaUtil::fillHist1D ("fatJet2Pt_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].pt , 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Pt_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2Mass_has2OrMoreFatJet_Boosted_WZ",fatJetColl[1].mass, 500, 0, 500, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Mass_has2OrMoreFatJet_Boosted_WZ",fatJetColl[1].mass, 500, 0, 500, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2MassSD_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].softDropMass, 100, -50., 450., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2MassSD_ha2OrMoreFatJet_Boosted_WZ", fatJetColl[1].softDropMass, 100, -50., 450.,"FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2Tau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau1, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Tau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau1, 100, 0, 1,"FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2Tau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau2, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Tau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau2, 100, 0, 1, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2Tau3_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau3, 100, 0, 1, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Tau3_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau3, 100, 0, 1, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2Tau3ovTau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau3/fatJetColl[1].tau2, 100, -0.5, 1.5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Tau3ovTau2_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau3/fatJetColl[1].tau2, 100, -0.5, 1.5, "FR", channels, MCweight, FR_flags);
+	AnaUtil::fillHist1D ("fatJet2Tau2ovTau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau2/fatJetColl[1].tau1, 100, -0.5, 1.5, "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("fatJet2Tau2ovTau1_has2OrMoreFatJet_Boosted_WZ", fatJetColl[1].tau2/fatJetColl[1].tau1, 100, -0.5, 1.5, "FR", channels, MCweight, FR_flags);
+
+        unsigned int i1 = fatJetColl[0].subJetIdx1;
+        unsigned int i2 = fatJetColl[0].subJetIdx2;
+        unsigned int i3 = fatJetColl[1].subJetIdx1;
+        unsigned int i4 = fatJetColl[1].subJetIdx2;
+        TLorentzVector Fj1InvMass_2;
+        TLorentzVector Fj2InvMass_2;
+        for (auto& fj: subJetColl) {
+
+          if(fj.index == i1) {
+	    AnaUtil::fillHist1D ("subJet1Pt_has2OrMoreFatJet_1_Boosted_WZ", fj.pt, 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet1Pt_has2OrMoreFatJet_1_Boosted_WZ", fj.pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	    AnaUtil::fillHist1D ("subJet1Mass_has2OrMoreFatJet_1_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet1Mass_has2OrMoreFatJet_1_Boosted_WZ", fj.mass,  100, -50.0, 450.0, "FR", channels, MCweight, FR_flags);
+
+            Fj1InvMass_2 = Fj1InvMass_2 + AnaUtil::getP4(fj);
+
+
+          }
+
+          if(fj.index == i2) {
+	    AnaUtil::fillHist1D ("subJet2Pt_has2OrMoreFatJet_1_Boosted_WZ", fj.pt, 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet2Pt_has2OrMoreFatJet_1_Boosted_WZ", fj.pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	    AnaUtil::fillHist1D ("subJet2Mass_has2OrMoreFatJet_1_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet2Mass_has2OrMoreFatJet_1_Boosted_WZ", fj.mass,  100, -50.0, 450.0, "FR", channels, MCweight, FR_flags);
+
+            Fj1InvMass_2 = Fj1InvMass_2 + AnaUtil::getP4(fj);
+
+          }
+
+          if(fj.index == i3) {
+	    AnaUtil::fillHist1D ("subJet1Pt_has2OrMoreFatJet_2_Boosted_WZ", fj.pt, 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet1Pt_has2OrMoreFatJet_2_Boosted_WZ", fj.pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	    AnaUtil::fillHist1D ("subJet1Mass_has2OrMoreFatJet_2_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet1Mass_has2OrMoreFatJet_2_Boosted_WZ", fj.mass,  100, -50.0, 450.0, "FR", channels, MCweight, FR_flags);
+
+            Fj2InvMass_2 = Fj2InvMass_2 + AnaUtil::getP4(fj);
+          }
+
+          if(fj.index == i4) {
+	    AnaUtil::fillHist1D ("subJet2Pt_has2OrMoreFatJet_2_Boosted_WZ", fj.pt, 200, 0., 1000., "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet2Pt_has2OrMoreFatJet_2_Boosted_WZ", fj.pt, 200, 0., 1000., "FR", channels, MCweight, FR_flags);
+
+	    AnaUtil::fillHist1D ("subJet2Mass_has2OrMoreFatJet_2_Boosted_WZ", fj.mass, 100, -50.0, 450.0, "SR", channels, MCweight, SR_flags);
+            if (!isSignal()) AnaUtil::fillHist1D ("subJet2Mass_has2OrMoreFatJet_2_Boosted_WZ", fj.mass,  100, -50.0, 450.0, "FR", channels, MCweight, FR_flags);
+
+            Fj2InvMass_2 = Fj2InvMass_2 + AnaUtil::getP4(fj);
+          }
+        }
+
+	AnaUtil::fillHist1D ("subJetsInvMass_has2OrMoreFatJet_1_Boosted_WZ", Fj1InvMass_2.M(), 200, -50., 950., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("subJetsInvMass_has2OrMoreFatJet_1_Boosted_WZ", Fj1InvMass_2.M(), 200, -50., 950., "FR", channels, MCweight, FR_flags);
+
+	AnaUtil::fillHist1D ("subJetsInvMass_has2OrMoreFatJet_2_Boosted_WZ", Fj2InvMass_2.M(), 200, -50.,950., "SR", channels, MCweight, SR_flags);
+        if (!isSignal()) AnaUtil::fillHist1D ("subJetsInvMass_has2OrMoreFatJet_2_Boosted_WZ", Fj2InvMass_2.M(), 200, -50., 950., "FR", channels, MCweight, FR_flags);
+        if(isSR)
+	  AnaUtil::fillHist1DBasic("evYield_nfatJet_SR", 2);
+        else if(isFR && !isSignal())
+	  AnaUtil::fillHist1DBasic("evYield_nfatJet_FR", 2);
+	
       }
-    } 
-    if (!isMC()) selEvLog() << evt.run << " " << evt.lumis << " " << evt.event << std::endl;
+      
+  }
+ if (!isMC()) selEvLog() << evt.run << " " << evt.lumis << " " << evt.event << std::endl;
    // Print only the first n events; n configurable
    //  if (isMC() && dumpEventCount_ > -1 && ++nEventSel >= dumpEventCount_) continue;
   }
@@ -700,7 +1065,9 @@ void MultiLeptonMVAna::endJob() {
       "has max 2 tight leptons             : ",
       "tau veto                            : ",
       "met > 60                            : ",
-      "is SR                               : "
+	"is SR                              : ",
+	"isResolved                        : ",
+	"isBoosted                         : "
       };
   vector<string> yieldLabels {
       "EleEle",

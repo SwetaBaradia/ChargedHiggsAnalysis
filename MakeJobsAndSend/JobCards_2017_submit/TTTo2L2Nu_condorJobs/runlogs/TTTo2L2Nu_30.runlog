@@ -1,0 +1,469 @@
+Linux b7s11n1072.cern.ch 3.10.0-1160.6.1.el7.x86_64 #1 SMP Tue Nov 17 13:59:11 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Muon
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::SubJet
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::FatJet
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Jet
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Tau
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::MET
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::LHEParticle
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::GenParticle
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Electron
+Error in cling::AutoloadingVisitor::InsertIntoAutoloadingState:
+   Missing FileEntry for PhysicsObjects.h
+   requested to autoload type vhtm::Event
+=== Start of Analysis === 
+>>> INFO. Adding input file /eos/user/g/gsaha3/Exotic/MC_UL2017/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/tree_68.root to TChain 
+Warning in <TClass::Init>: no dictionary for class ROOT::TIOFeatures is available
+>>>Right now the chain contains :: 762011 events
+>>> INFO. Adding input file /eos/user/g/gsaha3/Exotic/MC_UL2017/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/tree_69.root to TChain 
+>>>Right now the chain contains :: 1062735 events
+era 2017
+dataType mc
+readGenInfo 0
+dumpGenInfo 0
+readTrigObject 0
+readPFObject 1
+useLumiWt 1
+dumpEventMax 10
+logOption 0
+maxEvent -1
+nFiles -1
+evtWtSum genEventSumw
+createMVATree 0
+readMVA 0
+MVAnetwork BDT_nT1500_D2_nC100_ns5
+MVAxmlFile TMVAClassification_BDT_nT1500_D2_nC100_ns5.weights.xml
+mvaInputFile ll4jmet_FTree.root
+lumiWtList xsec=88.4 intLumi=41529.152 nevents=100000
+histFile /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/TTTo2L2Nu_30_hist.root
+fakehistFile /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/TTTo2L2Nu_fakehist.root
+vtxCutList ndf=4 z=24 Rho=2
+muonCutList eta=2.4 pt=10. dxy=0.05 dz=0.1 SIP3D=4. pfReliso=0.15
+electronCutList pt=10. eta=2.5 dxyEB=0.05 dzEB=0.1 dxyEE=0.1 dzEE=0.2 SIP3D=4. pfReliso=0.20
+tauCutList eta=2.3 pt=20. dz=0.2 muVeto=0.5 eleVeto=0.5 isol=0.5
+jetCutList eta=2.5 pt=20. dRlep=0.4 btagFactor=0.8484
+fatJetCutList eta=2.4 pt=200. dRlep=0.4 btagFactor=0.8484
+photonCutList pt=2 eta=2.4 isol=1.8 dRmin=0.5 dRovEt2=0.012
+evselCutList hLepPtMin=20. ZMassLow=60. ZMassHigh=120.
+SingleMuon HLT_IsoMu24
+SingleMuon HLT_IsoMu27
+DoubleMuon HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8
+DoubleMuon HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8
+SingleElectron HLT_Ele35_WPTight_Gsf
+SingleElectron HLT_Ele32_WPTight_Gsf
+DoubleEG HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL
+MuonEG HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
+MuonEG HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
+MuonEG HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL
+MuonEG HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ
+muonIdSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/RunBCDEF_SF_ID.root
+looseMuonIdSFhistName NUM_LooseID_DEN_genTracks_pt_abseta
+medMuonIdSFhistName NUM_MediumID_DEN_genTracks_pt_abseta
+tightMuonIdSFhistName NUM_TightID_DEN_genTracks_pt_abseta
+electronLooseIdSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/egammaEffi_txt_EGM2D_MVA80noIso_UL17.root
+looseEleIdSFhistName EGamma_SF2D
+electronTightIdSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/egammaEffi_txt_EGM2D_MVA90iso_UL17.root
+tightEleIdSFhistName EGamma_SF2D
+muonTightIsoSFRootFile /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/data/POG_SFs/2017/RunBCDEF_SF_ISO.root
+tightMuIsoSFhistName NUM_TightRelIso_DEN_MediumID_pt_abseta
+inputFile /eos/user/g/gsaha3/Exotic/MC_UL2017/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/tree_68.root
+inputFile /eos/user/g/gsaha3/Exotic/MC_UL2017/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/tree_69.root
+useEventList 1
+eventId 1 895751 20
+       datatype: mc
+    readGenInfo: 0
+        logFile: default.out
+      eventFile: events.out
+       histFile: /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/TTTo2L2Nu_30_hist.root
+      selEvFile: selected_events.out
+      useLumiWt: true
+        usePUWt: false
+     puHistFile: ./reweightFunctionFall11.root
+    puHistogram: pileup
+    useTrueNInt: true
+     useTrigger: false
+      logOption: 0
+       maxEvent: -1
+>>> INFO. nFiles: 2, Files to analyse:
+/eos/user/g/gsaha3/Exotic/MC_UL2017/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/tree_68.root
+/eos/user/g/gsaha3/Exotic/MC_UL2017/TTTo2L2Nu_TuneCP5_13TeV-powheg-pythia8/tree_69.root
+Event List:
+1-895751-20
+>>> electronCutList
+           SIP3D:    4.00
+           dxyEB:    0.05
+           dxyEE:    0.10
+            dzEB:    0.10
+            dzEE:    0.20
+             eta:    2.50
+        pfReliso:    0.20
+              pt:   10.00
+>>> evselCutList
+       ZMassHigh:  120.00
+        ZMassLow:   60.00
+       hLepPtMin:   20.00
+>>> fatJetCutList
+      btagFactor:    0.85
+           dRlep:    0.40
+             eta:    2.40
+              pt:  200.00
+>>> jetCutList
+      btagFactor:    0.85
+           dRlep:    0.40
+             eta:    2.50
+              pt:   20.00
+>>> lumiWtList
+         intLumi: 41529.15
+         nevents: 100000.00
+            xsec:   88.40
+>>> muonCutList
+           SIP3D:    4.00
+             dxy:    0.05
+              dz:    0.10
+             eta:    2.40
+        pfReliso:    0.15
+              pt:   10.00
+>>> photonCutList
+           dRmin:    0.50
+         dRovEt2:    0.01
+             eta:    2.40
+            isol:    1.80
+              pt:    2.00
+>>> tauCutList
+              dz:    0.20
+         eleVeto:    0.50
+             eta:    2.30
+            isol:    0.50
+          muVeto:    0.50
+              pt:   20.00
+>>> vtxCutList
+             Rho:    2.00
+             ndf:    4.00
+               z:   24.00
+
+==> Start event loop now with 2 file(s)
+ >>> nEvents = 1062735
+Chain Name: Events	Chain Entries: 1062735
+treeReader with TChain::Events
+Chain Name: Runs	Chain Entries: 2
+treeReader with TChain::Runs
+OBJ: TTreeReader	TTreeReader	A simple interface to read trees : 0 at: 0x27d5840
+OBJ: TTreeReader	TTreeReader	A simple interface to read trees : 0 at: 0x2bf8980
+>>> SetBranchAddress: <genEventSumw> found!
+>>> SetBranchAddress: <genWeight> found!
+>>> SetBranchAddress: <puWeight> found!
+>>> SetBranchAddress: <puWeightUp> found!
+>>> SetBranchAddress: <puWeightDown> found!
+>>> SetBranchAddress: <btagWeight_CSVV2> found!
+>>> SetBranchAddress: <run> found!
+>>> SetBranchAddress: <event> found!
+>>> SetBranchAddress: <luminosityBlock> found!
+>>> SetBranchAddress: <PV_ndof> found!
+>>> SetBranchAddress: <PV_x> found!
+>>> SetBranchAddress: <PV_y> found!
+>>> SetBranchAddress: <PV_z> found!
+>>> SetBranchAddress: <PV_chi2> found!
+>>> SetBranchAddress: <PV_score> found!
+>>> SetBranchAddress: <PV_npvs> found!
+>>> SetBranchAddress: <PV_npvsGood> found!
+>>> SetBranchAddress: <nMuon> found!
+>>> SetBranchAddress: <Muon_pt> found!
+>>> SetBranchAddress: <Muon_corrected_pt> found!
+>>> SetBranchAddress: <Muon_eta> found!
+>>> SetBranchAddress: <Muon_phi> found!
+>>> SetBranchAddress: <Muon_charge> found!
+>>> SetBranchAddress: <Muon_mass> found!
+>>> SetBranchAddress: <Muon_sip3d> found!
+>>> SetBranchAddress: <Muon_jetIdx> found!
+>>> SetBranchAddress: <Muon_softId> found!
+>>> SetBranchAddress: <Muon_mediumId> found!
+>>> SetBranchAddress: <Muon_tightId> found!
+>>> SetBranchAddress: <Muon_highPtId> found!
+>>> SetBranchAddress: <Muon_mvaId> found!
+>>> SetBranchAddress: <Muon_pfRelIso03_all> found!
+>>> SetBranchAddress: <Muon_pfRelIso03_chg> found!
+>>> SetBranchAddress: <Muon_pfRelIso04_all> found!
+>>> SetBranchAddress: <Muon_genPartIdx> found!
+>>> SetBranchAddress: <Muon_genPartFlav> found!
+>>> SetBranchAddress: <Muon_isGlobal> found!
+>>> SetBranchAddress: <Muon_isPFcand> found!
+>>> SetBranchAddress: <Muon_isTracker> found!
+>>> SetBranchAddress: <Muon_dxy> found!
+>>> SetBranchAddress: <Muon_dxy> found!
+>>> SetBranchAddress: <Muon_tightCharge> found!
+>>> SetBranchAddress: <Muon_miniPFRelIso_all> found!
+>>> SetBranchAddress: <nElectron> found!
+>>> SetBranchAddress: <Electron_pt> found!
+>>> SetBranchAddress: <Electron_eta> found!
+>>> SetBranchAddress: <Electron_phi> found!
+>>> SetBranchAddress: <Electron_charge> found!
+>>> SetBranchAddress: <Electron_mass> found!
+>>> SetBranchAddress: <Electron_sip3d> found!
+>>> SetBranchAddress: <Electron_jetIdx> found!
+>>> SetBranchAddress: <Electron_photonIdx> found!
+>>> SetBranchAddress: <Electron_pfRelIso03_all> found!
+>>> SetBranchAddress: <Electron_pfRelIso03_chg> found!
+>>> SetBranchAddress: <Electron_mvaFall17V2Iso_WP80> found!
+>>> SetBranchAddress: <Electron_mvaFall17V2Iso_WP90> found!
+>>> SetBranchAddress: <Electron_mvaFall17V1Iso_WP90> found!
+>>> SetBranchAddress: <Electron_genPartIdx> found!
+>>> SetBranchAddress: <Electron_genPartFlav> found!
+>>> SetBranchAddress: <Electron_dxy> found!
+>>> SetBranchAddress: <Electron_dz> found!
+>>> SetBranchAddress: <Electron_mvaFall17V2noIso_WPL> found!
+>>> SetBranchAddress: <Electron_mvaFall17V1noIso_WPL> found!
+>>> SetBranchAddress: <Electron_lostHits> found!
+>>> SetBranchAddress: <Electron_convVeto> found!
+>>> SetBranchAddress: <Electron_deltaEtaSC> found!
+>>> SetBranchAddress: <MET_pt> found!
+>>> SetBranchAddress: <<<MET_pt_nom>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <MET_phi> found!
+>>> SetBranchAddress: <<<MET_phi_nom>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <MET_significance> found!
+>>> SetBranchAddress: <MET_sumEt> found!
+>>> SetBranchAddress: <nJet> found!
+>>> SetBranchAddress: <Jet_pt> found!
+>>> SetBranchAddress: <Jet_pt_nom> found!
+>>> SetBranchAddress: <Jet_eta> found!
+>>> SetBranchAddress: <Jet_phi> found!
+>>> SetBranchAddress: <Jet_nConstituents> found!
+>>> SetBranchAddress: <Jet_nMuons> found!
+>>> SetBranchAddress: <Jet_nElectrons> found!
+>>> SetBranchAddress: <Jet_puId> found!
+>>> SetBranchAddress: <Jet_muonIdx1> found!
+>>> SetBranchAddress: <Jet_muonIdx2> found!
+>>> SetBranchAddress: <Jet_electronIdx1> found!
+>>> SetBranchAddress: <Jet_electronIdx2> found!
+>>> SetBranchAddress: <Jet_jetId> found!
+>>> SetBranchAddress: <Jet_qgl> found!
+>>> SetBranchAddress: <Jet_neHEF> found!
+>>> SetBranchAddress: <Jet_neEmEF> found!
+>>> SetBranchAddress: <Jet_chHEF> found!
+>>> SetBranchAddress: <Jet_chEmEF> found!
+>>> SetBranchAddress: <Jet_area> found!
+>>> SetBranchAddress: <Jet_mass> found!
+>>> SetBranchAddress: <Jet_mass_nom> found!
+>>> SetBranchAddress: <Jet_btagCSVV2> found!
+>>> SetBranchAddress: <Jet_btagDeepFlavB> found!
+>>> SetBranchAddress: <nFatJet> found!
+>>> SetBranchAddress: <FatJet_pt> found!
+>>> SetBranchAddress: <FatJet_eta> found!
+>>> SetBranchAddress: <FatJet_phi> found!
+>>> SetBranchAddress: <FatJet_mass> found!
+>>> SetBranchAddress: <FatJet_msoftdrop> found!
+>>> SetBranchAddress: <FatJet_jetId> found!
+>>> SetBranchAddress: <FatJet_btagDeepB> found!
+>>> SetBranchAddress: <FatJet_btagCSVV2> found!
+>>> SetBranchAddress: <FatJet_n2b1> found!
+>>> SetBranchAddress: <FatJet_n3b1> found!
+>>> SetBranchAddress: <FatJet_hadronFlavour> found!
+>>> SetBranchAddress: <FatJet_nBHadrons> found!
+>>> SetBranchAddress: <FatJet_nCHadrons> found!
+>>> SetBranchAddress: <FatJet_rawFactor> found!
+>>> SetBranchAddress: <FatJet_subJetIdx1> found!
+>>> SetBranchAddress: <FatJet_subJetIdx2> found!
+>>> SetBranchAddress: <FatJet_tau1> found!
+>>> SetBranchAddress: <FatJet_tau2> found!
+>>> SetBranchAddress: <FatJet_tau3> found!
+>>> SetBranchAddress: <FatJet_tau3> found!
+>>> SetBranchAddress: <FatJet_deepTag_WvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTag_ZvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTag_TvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTagMD_WvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTagMD_ZvsQCD> found!
+>>> SetBranchAddress: <FatJet_deepTagMD_TvsQCD> found!
+>>> SetBranchAddress: <FatJet_electronIdx3SJ> found!
+>>> SetBranchAddress: <FatJet_muonIdx3SJ> found!
+>>> SetBranchAddress: <nSubJet> found!
+>>> SetBranchAddress: <SubJet_pt> found!
+>>> SetBranchAddress: <SubJet_eta> found!
+>>> SetBranchAddress: <SubJet_phi> found!
+>>> SetBranchAddress: <SubJet_mass> found!
+>>> SetBranchAddress: <SubJet_btagDeepB> found!
+>>> SetBranchAddress: <SubJet_rawFactor> found!
+>>> SetBranchAddress: <nTau> found!
+>>> SetBranchAddress: <Tau_pt> found!
+>>> SetBranchAddress: <Tau_eta> found!
+>>> SetBranchAddress: <Tau_phi> found!
+>>> SetBranchAddress: <Tau_mass> found!
+>>> SetBranchAddress: <Tau_dxy> found!
+>>> SetBranchAddress: <Tau_dz> found!
+>>> SetBranchAddress: <Tau_charge> found!
+>>> SetBranchAddress: <Tau_decayMode> found!
+>>> SetBranchAddress: <Tau_idDecayMode> found!
+>>> SetBranchAddress: <Tau_idDecayModeNewDMs> found!
+>>> SetBranchAddress: <Tau_jetIdx> found!
+>>> SetBranchAddress: <Tau_idAntiEle> found!
+>>> SetBranchAddress: <Tau_idAntiMu> found!
+>>> SetBranchAddress: <Tau_idMVAoldDM> found!
+>>> SetBranchAddress: <<<Tau_idDeepTau2017v2VSjet>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<Tau_idDeepTau2017v2VSmu>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <<<Tau_idDeepTau2017v2VSe>>> N O T   F O U N D !!!
+>>> SetBranchAddress: <Tau_idDeepTau2017v2p1VSjet> found!
+>>> SetBranchAddress: <Tau_idDeepTau2017v2p1VSmu> found!
+>>> SetBranchAddress: <Tau_idDeepTau2017v2p1VSe> found!
+>>> SetBranchAddress: <LHE_Njets> found!
+>>> SetBranchAddress: <HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8> found!
+>>> SetBranchAddress: <HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8> found!
+>>> SetBranchAddress: <HLT_IsoMu24> found!
+>>> SetBranchAddress: <HLT_IsoMu27> found!
+>>> SetBranchAddress: <HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL> found!
+>>> SetBranchAddress: <HLT_Ele35_WPTight_Gsf> found!
+>>> SetBranchAddress: <HLT_Ele32_WPTight_Gsf> found!
+>>> SetBranchAddress: <HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ> found!
+>>> SetBranchAddress: <HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ> found!
+>>> SetBranchAddress: <HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL> found!
+>>> SetBranchAddress: <HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ> found!
+TFile**		/afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/TTTo2L2Nu_30_hist.root	
+ TFile*		/afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/ChargedHiggsAnalysis_2017_JobOutput_submit/TTTo2L2Nu_30_hist.root	
+  TDirectoryFile*		ObjectSelection	ObjectSelection
+   OBJ: TH1D	muCutFlow	Muon CutFlow : 0 at: 0x534c0c0
+   OBJ: TH1D	eleCutFlow	Electron CutFlow : 0 at: 0x534c880
+   OBJ: TH1D	jetCutFlow	Jet CutFlow : 0 at: 0x534cdd0
+   OBJ: TH1D	tauCutFlow	Tau CutFlow : 0 at: 0x534d330
+   OBJ: TH1D	fatJetCutFlow	FatJet CutFlow : 0 at: 0x534d870
+  OBJ: TH1D	evtCutFlow	Event CutFlow : 0 at: 0x534ddd0
+  OBJ: TH1D	evYield_nfatJet_SR	 : 0 at: 0x534e360
+  OBJ: TH1D	evYield_nfatJet_FR	 : 0 at: 0x534e8e0
+  OBJ: TH1D	evtCutFlowWt	Event CutFlow (Weighted) : 0 at: 0x534ee60
+  OBJ: TH1D	SR_yield	Yield in Signal Region : 0 at: 0x534f420
+  OBJ: TH1D	SR_yieldWt	Yield in Signal Region Weighted : 0 at: 0x534f990
+  OBJ: TH1D	FR_yield	Yield in Fake Extrapolated Region : 0 at: 0x534ff00
+  OBJ: TH1D	FR_yieldWt	Yield in Fake Extrapolated Region Weighted : 0 at: 0x53504c0
+  KEY: TDirectoryFile	ObjectSelection;1	ObjectSelection
+>>> Event range: [0, 1062734]
+-- intLumi: 41529.15 xsec: 88.40 nevt: 81716378.72
+>>> lumiWt: 0.04 <<<<
+ <<<eventNo#        1
+ eventWt#    72.70
+ pileUpWt#     1.08
+ lumiWt#     0.04
+ bTagWt#     0.99
+ totalWt#    78.56 >>> 
+Event : 98
+fel :1	fmu :1	tel :1	tmu :0	lep1Flv :2	lep2Flv :1	leadIsTightMuon :false	leadIsTightEle :true
+isSR :false	isFR :true	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :false	isFR_EleEle :false	isFR_EleMu :true	isFR_MuMu :false
+MC_weight : 0.6479073763	Lumi_weight : 0.0291077838
+Event : 138
+fel :1	fmu :1	tel :0	tmu :1	lep1Flv :1	lep2Flv :2	leadIsTightMuon :true	leadIsTightEle :false
+isSR :false	isFR :true	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :false	isFR_EleEle :false	isFR_EleMu :true	isFR_MuMu :false
+MC_weight : 0.7619276047	Lumi_weight : 0.0342302384
+Event : 233
+fel :2	fmu :0	tel :1	tmu :0	lep1Flv :2	lep2Flv :2	leadIsTightMuon :false	leadIsTightEle :true
+isSR :false	isFR :true	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :false	isFR_EleEle :true	isFR_EleMu :false	isFR_MuMu :false
+MC_weight : 0.7529531121	Lumi_weight : 0.0338270518
+Event : 236
+fel :1	fmu :1	tel :1	tmu :0	lep1Flv :1	lep2Flv :2	leadIsTightMuon :false	leadIsTightEle :false
+isSR :false	isFR :true	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :false	isFR_EleEle :false	isFR_EleMu :true	isFR_MuMu :false
+MC_weight : 0.8167620301	Lumi_weight : 0.0366937211
+Event : 333
+fel :1	fmu :1	tel :1	tmu :0	lep1Flv :1	lep2Flv :2	leadIsTightMuon :false	leadIsTightEle :false
+isSR :false	isFR :true	isSR_EleEle :false	isSR_EleMu :false	isSR_MuMu :false	isFR_EleEle :false	isFR_EleMu :true	isFR_MuMu :false
+MC_weight : 0.8324484825	Lumi_weight : 0.0373984482
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 507692 Event#     50769145 >>>  Events proc.   100000
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 433725 Event#     43372417 >>>  Events proc.   200000
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 669736 Event#     66973593 >>>  Events proc.   300000
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 195182 Event#     19518101 >>>  Events proc.   400000
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 114107 Event#     11410637 >>>  Events proc.   500000
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 573078 Event#     57307719 >>>  Events proc.   600000
+Tree#    0 ==> tree_68.root <<< Run#        1 Lumis# 515418 Event#     51541770 >>>  Events proc.   700000
+Tree#    1 ==> tree_69.root <<< Run#        1 Lumis# 666317 Event#     66631624 >>>  Events proc.   800000
+Tree#    1 ==> tree_69.root <<< Run#        1 Lumis#  60360 Event#      6035910 >>>  Events proc.   900000
+Tree#    1 ==> tree_69.root <<< Run#        1 Lumis# 614291 Event#     61429022 >>>  Events proc.  1000000
+>>> Muon Selection Efficiency
+                                                         CutFlow        Muons    AbsEff AbsEffErr    RelEff RelEffErr
+                                                       nRawMuons   1306273.00   1.00000   0.00000   1.00000   0.00000
+                                                     preSel cuts    879721.00   0.67346   0.00041   0.67346   0.00041
+                                                           pT>10    792260.00   0.60650   0.00043   0.90058   0.00032
+                                                   pass MediumId    777793.00   0.59543   0.00043   0.98174   0.00015
+                                                pfRelIso <= 0.15    613073.00   0.46933   0.00044   0.78822   0.00046
+>>> Electron Selection Efficiency
+                                                         CutFlow    Electrons    AbsEff AbsEffErr    RelEff RelEffErr
+                                                   nRawElectrons   1428616.00   1.00000   0.00000   1.00000   0.00000
+                                                     preSel cuts    762149.00   0.53349   0.00042   0.53349   0.00042
+                                    cleaning against tight muons    760105.00   0.53206   0.00042   0.99732   0.00006
+                                       pT>10,ConvVeto,NoLostHits    697432.00   0.48819   0.00042   0.91755   0.00032
+                                        pass mvaFall17V2Iso_WP90    575654.00   0.40295   0.00041   0.82539   0.00045
+>>> Jet Selection Efficiency
+                                                         CutFlow         Jets    AbsEff AbsEffErr    RelEff RelEffErr
+                                                        nRawJets   7752355.00   1.00000   0.00000   1.00000   0.00000
+                                                     tight JetId   7546209.00   0.97341   0.00006   0.97341   0.00006
+                                         jet_pt > 25 & eta < 2.5   4334747.00   0.55915   0.00018   0.57443   0.00018
+                                                        puId cut   4252083.00   0.54849   0.00018   0.98093   0.00007
+                                                 lepton cleaning   3214758.00   0.41468   0.00018   0.75604   0.00021
+                                                      is bTagged   1429580.00   0.18441   0.00014   0.44469   0.00028
+>>> Tau Selection Efficiency
+                                                         CutFlow         Taus    AbsEff AbsEffErr    RelEff RelEffErr
+                                                        nRawTaus   1775936.00   1.00000   0.00000   1.00000   0.00000
+                                                      tauSelCuts      2812.00   0.00158   0.00003   0.00158   0.00003
+                                                        lepClean      2580.00   0.00145   0.00003   0.91750   0.00519
+>>> FatJet Selection Efficiency
+                                                         CutFlow      FatJets    AbsEff AbsEffErr    RelEff RelEffErr
+                                                     nRawFatJets    268609.00   1.00000   0.00000   1.00000   0.00000
+                                      after jetId, pT & eta cuts    159757.00   0.59476   0.00095   0.59476   0.00095
+                                                 hasValidSubJets    141078.00   0.52522   0.00096   0.88308   0.00080
+                                            30 < mSoftDrop < 210     87011.00   0.32393   0.00090   0.61676   0.00129
+                                                    tau21 < 0.75     85956.00   0.32000   0.00090   0.98788   0.00037
+                                                  leptonCleaning     50827.00   0.18922   0.00076   0.59131   0.00168
+                                                       isBTagged     23392.00   0.08709   0.00054   0.46023   0.00221
+>>> Event Selection [Unweighted] Efficiency
+                                                         CutFlow       Events    AbsEff AbsEffErr    RelEff RelEffErr
+                          Events processed                    :    1062735.00   1.00000   0.00000   1.00000   0.00000
+                          has GoodPV                          :    1062735.00   1.00000   0.00000   1.00000   0.00000
+                          at least 2 fakeable leptons         :     472595.00   0.44470   0.00048   0.44470   0.00048
+                          lep1pt > 25 and lep2pt > 20         :     335617.00   0.31580   0.00045   0.71016   0.00066
+                          pass HLT                            :     316491.00   0.29781   0.00044   0.94301   0.00040
+                          OS fakeable leptons                 :      17268.00   0.01625   0.00012   0.05456   0.00040
+                          low mass resonance veto             :      15986.00   0.01504   0.00012   0.92576   0.00200
+                          Z mass resonance veto               :      15271.00   0.01437   0.00012   0.95527   0.00163
+                          has max 2 tight leptons             :      15036.00   0.01415   0.00011   0.98461   0.00100
+                          tau veto                            :      15015.00   0.01413   0.00011   0.99860   0.00030
+                          met > 60                            :       9549.00   0.00899   0.00009   0.63596   0.00393
+                          is SR                               :        834.00   0.00078   0.00003   0.08734   0.00289
+>>> Prompt Contribution in Signal Region [unweighted] Yield 
+                                                         Channel                   Yield
+                                                        ---------------------------------
+                                                          EleEle               324.00000
+                                                           EleMu               423.00000
+                                                            MuMu                87.00000
+>>> Fake Extrapolation in Signal Region [unweighted] Yield 
+                                                         Channel                   Yield
+                                                        ---------------------------------
+                                                          EleEle              1678.00000
+                                                           EleMu              4431.00000
+                                                            MuMu              2606.00000
+
+evtWeightSum:   81716379
+      lumiWt:    0.04493
+>>> Prompt Contribution in Signal Region [Lumi weighted] Yield 
+                                                         Channel                   Yield
+                                                        ---------------------------------
+                                                          EleEle              1146.82064
+                                                           EleMu              1490.03038
+                                                            MuMu               305.61149
+>>> Fake Extrapolation in Signal Region [Lumi weighted] Yield 
+                                                         Channel                   Yield
+                                                        ---------------------------------
+                                                          EleEle                55.44000
+                                                           EleMu               144.48734
+                                                            MuMu                84.31412
+=== End of Analysis === 
+Realtime/CpuTime = 483.37535/63.21000

@@ -1,0 +1,7 @@
+executable   = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/ST_s-channel_4f_condorJobs/ST_s-channel_4f_0.sh
+arguments    = $(ClusterId)$(ProcId)
+output       = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/ST_s-channel_4f_condorJobs/output/ST_s-channel_4f_0.$(ClusterId).$(ProcId).out
+error        = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/ST_s-channel_4f_condorJobs/error/ST_s-channel_4f_0.$(ClusterId).$(ProcId).err
+log          = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/ST_s-channel_4f_condorJobs/log/ST_s-channel_4f_0.$(ClusterId).log
++JobFlavour  = "tomorrow"
+queue

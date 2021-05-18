@@ -33,7 +33,7 @@ namespace vhtm {
     float PVz;
     //LHE Info
     int nLHEParticles;
-    int nLHEJets;
+   unsigned char nLHEJets;
     //Gen Info
     int nGenParticles;
     //UserDefined

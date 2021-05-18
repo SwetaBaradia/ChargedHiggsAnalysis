@@ -1,0 +1,7 @@
+executable   = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/TTToSemiLeptonic_condorJobs/TTToSemiLeptonic_18.sh
+arguments    = $(ClusterId)$(ProcId)
+output       = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/TTToSemiLeptonic_condorJobs/output/TTToSemiLeptonic_18.$(ClusterId).$(ProcId).out
+error        = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/TTToSemiLeptonic_condorJobs/error/TTToSemiLeptonic_18.$(ClusterId).$(ProcId).err
+log          = /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/MakeJobsAndSend/JobCards_2017_submit1/TTToSemiLeptonic_condorJobs/log/TTToSemiLeptonic_18.$(ClusterId).log
++JobFlavour  = "tomorrow"
+queue

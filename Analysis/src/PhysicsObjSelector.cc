@@ -188,9 +188,14 @@ bool PhysicsObjSelector::findEventInfo() {
     if (readGenInfo()) {
       ev.nGenParticles = *nGenPart->Get();
       ev.nLHEParticles = *nLHEPart->Get();
+     
     }
-    //ev.nLHEJets = *LHEnJets->Get();
-    ev.btagWeight_CSVV2 = *btagWeight_CSVV2->Get();
+    // std::cout<<*LHEnJets->Get()<<endl;
+    //std::cout<<"jolllllllllllllll"<<endl;
+    ev.nLHEJets = *LHEnJets->Get();    
+    // std::cout<<ev.nLHEJets<<endl;
+    
+ev.btagWeight_CSVV2 = *btagWeight_CSVV2->Get();
   }
   ev.nPV     = *nPV->Get();
   ev.nGoodPV = *nGoodPV->Get();
@@ -495,7 +500,7 @@ void PhysicsObjSelector::tauSelector() {
     AnaUtil::fillHist1DBasic ("tauCutFlow", 0, 1.0);
 
     if (Tau_pt->At(it) < 20) continue;
-    if (std::fabs(Tau_eta->At(it)) < 2.3) continue;
+    if (std::fabs(Tau_eta->At(it)) > 2.3) continue;
     if (std::fabs(Tau_dxy->At(it)) > 0.1) continue;
     if (std::fabs(Tau_dz->At(it)) > 0.2) continue;
     if (!Tau_idDecayModeNewDMs->At(it)) continue;

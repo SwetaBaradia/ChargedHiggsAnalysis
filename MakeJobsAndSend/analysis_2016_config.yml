@@ -1,10 +1,10 @@
 tree: Events
 era: 2017
 lumi: 41529.152 
-appDir: /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/CMSSW_9_4_9/src
-jobDir: /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis
-exeToRun: /afs/cern.ch/work/g/gsaha/public/ChargedHiggsAnalysis/Analysis/multileptonMVA
-outDir: /eos/user/g/gsaha3/Exotic
+appDir: /afs/cern.ch/work/s/sbaradia/public/Analysis_mva/CMSSW_9_4_9/src
+jobDir: /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis
+exeToRun: /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis/multileptonMVA
+outDir: /afs/cern.ch/work/s/sbaradia/public/ChargedHiggs/ChargedHiggsAnalysis/Analysis
 commonInfo:
   - readGenInfo 0
   - dumpGenInfo 0
@@ -104,7 +104,7 @@ samplesDict:
       filedirs: ['/eos/user/g/gsaha3/Exotic/MC_UL2017/TTWJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8']
       genEvtWtSum: 'genEventSumw'
       xsec : 0.1960
-      filesPerJob: 2
+      filesPerJob: 3
 
     TTGJets:
       filedirs: ['/eos/user/g/gsaha3/Exotic/MC_UL2017/TTGJets_TuneCP5_13TeV-amcatnloFXFX-madspin-pythia8']
@@ -124,23 +124,23 @@ samplesDict:
       xsec : 80.95
       filesPerJob: 2
 
-  DATA:  
-    ### era B
-    SingleMuon_2016B:
-      filedirs: ['/eos/user/p/ppalit3/Exotic/DATA/DoubleMuon2016/EraB/']
-      filesPerJob: 2
+#  DATA:  
+#   ### era B
+#    SingleMuon_2016B:
+#      filedirs: ['/eos/user/p/ppalit3/Exotic/DATA/DoubleMuon2016/EraB/']
+#      filesPerJob: 2
 
-    DoubleMuon_2016B:
-      filedirs: ['/eos/user/p/ppalit3/Exotic/DATA/DoubleMuon2016/EraB/']
-      filesPerJob: 2
+#   DoubleMuon_2016B:
+#      filedirs: ['/eos/user/p/ppalit3/Exotic/DATA/DoubleMuon2016/EraB/']
+#      filesPerJob: 2
 
-    MuonEG_2016B:
-      filedirs: ['/eos/user/p/ppalit3/Exotic/DATA/DoubleEG2016/EraB/']
-      filesPerJob: 2
+#    MuonEG_2016B:
+#      filedirs: ['/eos/user/p/ppalit3/Exotic/DATA/DoubleEG2016/EraB/']
+#      filesPerJob: 2
 
   SIGNAL:
     Signal_PPAP_v1:
       filedirs: ['/eos/user/p/ppalit3/Exotic/Signal_PPAP_BP1/']
       xsec: 0.001929282841388
       genEvtWtSum: 'genEventSumw'
-      filesPerJob: 4
+      filesPerJob: 100
